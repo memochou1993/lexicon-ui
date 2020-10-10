@@ -3,7 +3,9 @@
     <TheHeader />
     <v-main>
       <v-container>
-        <router-view />
+        <router-view
+          class="mt-5"
+        />
       </v-container>
     </v-main>
     <TheFooter />
