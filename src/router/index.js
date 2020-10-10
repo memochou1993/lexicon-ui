@@ -25,6 +25,14 @@ const routes = [
       // requiresVisitor: true,
     },
   },
+  {
+    path: '/projects/:projectId',
+    name: 'projects.show',
+    component: () => import(/* webpackChunkName: "projects.show" */ '@/views/project/Show.vue'),
+    meta: {
+      // requiresVisitor: true,
+    },
+  },
 ];
 
 const router = new VueRouter({

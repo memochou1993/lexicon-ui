@@ -8,9 +8,7 @@
         <v-card
           flat
         >
-          <v-list
-            flat
-          >
+          <v-list>
             <v-list-item-group>
               <template
                 v-for="(item, index) in teams"

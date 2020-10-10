@@ -3,31 +3,31 @@ import axios from 'axios';
 export default {
   namespaced: true,
   state: {
-    projects: [],
-    project: null,
+    keys: [],
+    key: null,
   },
   mutations: {
-    setProjects(state, projects) {
-      state.projects = projects;
+    setKeys(state, keys) {
+      state.keys = keys;
     },
-    setProject(state, project) {
-      state.project = project;
+    setKey(state, key) {
+      state.key = key;
     },
   },
   actions: {
-    fetchProjects({
+    fetchKeys({
       commit,
     }, {
-      teamId,
+      projectId,
     }) {
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
-          url: `teams/${teamId}/projects`,
+          url: `projects/${projectId}/keys`,
         })
           .then(({ data }) => {
             setTimeout(() => {
-              commit('setProjects', data.data);
+              commit('setKeys', data.data);
             });
             resolve(data);
           })
@@ -36,19 +36,19 @@ export default {
           });
       });
     },
-    fetchProject({
+    fetchKey({
       commit,
     }, {
-      projectId,
+      keyId,
     }) {
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
-          url: `/projects/${projectId}`,
+          url: `/keys/${keyId}`,
         })
           .then(({ data }) => {
             setTimeout(() => {
-              commit('setProject', data.data);
+              commit('setKey', data.data);
             });
             resolve(data);
           })
