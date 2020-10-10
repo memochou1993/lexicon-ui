@@ -14,14 +14,14 @@
             v-if="projects.length > 0"
           >
             <v-list-item-group>
-              <template v-for="(item, index) in projects">
+              <template v-for="(project, index) in projects">
                 <v-list-item
                   :key="index"
-                  :to="{ name: 'projects.show', params: { projectId: item.id } }"
+                  :to="{ name: 'projects.show', params: { projectId: project.id } }"
                 >
                   <v-list-item-content>
                     <v-list-item-title
-                      v-text="item.name"
+                      v-text="project.name"
                     />
                   </v-list-item-content>
                 </v-list-item>

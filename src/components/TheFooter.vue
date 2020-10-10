@@ -1,6 +1,7 @@
 <template>
   <v-card>
     <v-footer
+      color="primary"
       dark
       padless
       tile

@@ -11,15 +11,15 @@
           <v-list>
             <v-list-item-group>
               <template
-                v-for="(item, index) in teams"
+                v-for="(team, index) in teams"
               >
                 <v-list-item
                   :key="index"
-                  :to="{ name: 'teams.show', params: { teamId: item.id } }"
+                  :to="{ name: 'teams.show', params: { teamId: team.id } }"
                 >
                   <v-list-item-content>
                     <v-list-item-title
-                      v-text="item.name"
+                      v-text="team.name"
                     />
                   </v-list-item-content>
                 </v-list-item>

@@ -7,41 +7,39 @@
         {{ project.name }}
       </v-card-title>
       <v-card-text>
-        <v-card
-          flat
+        <v-data-table
+          v-if="keys.length > 0"
+          :items="keys"
+          hide-default-footer
+          hide-default-header
         >
-          <v-list
-            v-if="keys.length > 0"
+          <template
+            v-slot:body="{ items }"
           >
-            <template v-for="(item, index) in keys">
-              <v-list-item
+            <tbody>
+              <tr
+                v-for="(item, index) in items"
                 :key="index"
               >
-                <v-list-item-content>
-                  <v-list-item-title
-                    v-text="item.name"
-                  />
-                </v-list-item-content>
-              </v-list-item>
-              <v-divider
-                v-if="index < keys.length - 1"
-                :key="`divider-${index}`"
-              />
-            </template>
-          </v-list>
-        </v-card>
-        <div
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>
+                  values
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-data-table>
+        <v-pagination
           v-if="pages > 1"
-          class="text-center"
-        >
-          <v-pagination
-            v-model="page"
-            :length="pages"
-            :total-visible="7"
-            next-icon="mdi-menu-right"
-            prev-icon="mdi-menu-left"
-          />
-        </div>
+          v-model="page"
+          :length="pages"
+          :total-visible="7"
+          next-icon="mdi-menu-right"
+          prev-icon="mdi-menu-left"
+          class="mt-4"
+        />
       </v-card-text>
     </v-card>
   </div>
