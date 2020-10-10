@@ -54,12 +54,8 @@ export default {
     ]),
   },
   created() {
-    this.fetchTeam({
-      teamId: this.$route.params.teamId,
-    });
-    this.fetchProjects({
-      teamId: this.$route.params.teamId,
-    });
+    this.getTeam();
+    this.getProjects();
   },
   methods: {
     ...mapActions('project', [
@@ -68,6 +64,16 @@ export default {
     ...mapActions('team', [
       'fetchTeam',
     ]),
+    getProjects() {
+      this.fetchProjects({
+        teamId: this.$route.params.teamId,
+      });
+    },
+    getTeam() {
+      this.fetchTeam({
+        teamId: this.$route.params.teamId,
+      });
+    },
   },
 };
 </script>

@@ -4,7 +4,7 @@
     <v-main>
       <v-container>
         <router-view
-          class="mt-5"
+          class="my-5"
         />
       </v-container>
     </v-main>

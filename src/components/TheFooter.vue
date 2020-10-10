@@ -1,7 +1,6 @@
 <template>
   <v-card>
     <v-footer
-      absolute
       dark
       padless
       tile

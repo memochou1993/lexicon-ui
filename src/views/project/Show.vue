@@ -13,26 +13,35 @@
           <v-list
             v-if="keys.length > 0"
           >
-            <v-list-item-group>
-              <template v-for="(item, index) in keys">
-                <v-list-item
-                  :key="index"
-                  :to="{ name: 'projects.show', params: { projectId: item.id } }"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title
-                      v-text="item.name"
-                    />
-                  </v-list-item-content>
-                </v-list-item>
-                <v-divider
-                  v-if="index < keys.length - 1"
-                  :key="`divider-${index}`"
-                />
-              </template>
-            </v-list-item-group>
+            <template v-for="(item, index) in keys">
+              <v-list-item
+                :key="index"
+              >
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="item.name"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider
+                v-if="index < keys.length - 1"
+                :key="`divider-${index}`"
+              />
+            </template>
           </v-list>
         </v-card>
+        <div
+          v-if="pages > 1"
+          class="text-center"
+        >
+          <v-pagination
+            v-model="page"
+            :length="pages"
+            :total-visible="7"
+            next-icon="mdi-menu-right"
+            prev-icon="mdi-menu-left"
+          />
+        </div>
       </v-card-text>
     </v-card>
   </div>
@@ -45,21 +54,28 @@ import {
 } from 'vuex';
 
 export default {
+  data() {
+    return {
+      page: 1,
+    };
+  },
   computed: {
     ...mapState('key', [
       'keys',
+      'pages',
     ]),
     ...mapState('project', [
       'project',
     ]),
   },
+  watch: {
+    page() {
+      this.getKeys();
+    },
+  },
   created() {
-    this.fetchProject({
-      projectId: this.$route.params.projectId,
-    });
-    this.fetchKeys({
-      projectId: this.$route.params.projectId,
-    });
+    this.getProject();
+    this.getKeys();
   },
   methods: {
     ...mapActions('key', [
@@ -68,6 +84,17 @@ export default {
     ...mapActions('project', [
       'fetchProject',
     ]),
+    getKeys() {
+      this.fetchKeys({
+        projectId: this.$route.params.projectId,
+        page: this.page,
+      });
+    },
+    getProject() {
+      this.fetchProject({
+        projectId: this.$route.params.projectId,
+      });
+    },
   },
 };
 </script>

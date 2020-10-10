@@ -49,12 +49,15 @@ export default {
     ]),
   },
   created() {
-    this.fetchUserTeams();
+    this.getUserTeams();
   },
   methods: {
     ...mapActions('team', [
       'fetchUserTeams',
     ]),
+    getUserTeams() {
+      this.fetchUserTeams();
+    },
   },
 };
 </script>
