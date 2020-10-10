@@ -5,6 +5,7 @@ export default {
   state: {
     teams: [],
     team: null,
+    pages: 0,
   },
   mutations: {
     setTeams(state, teams) {
@@ -13,19 +14,29 @@ export default {
     setTeam(state, team) {
       state.team = team;
     },
+    setPages(state, pages) {
+      state.pages = pages;
+    },
   },
   actions: {
     fetchUserTeams({
       commit,
+    }, {
+      page,
     }) {
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
           url: '/user/teams',
+          params: {
+            page,
+            per_page: 100,
+          },
         })
           .then(({ data }) => {
             setTimeout(() => {
               commit('setTeams', data.data);
+              commit('setPages', data.meta.last_page);
             });
             resolve(data);
           })

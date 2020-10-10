@@ -31,6 +31,15 @@
             </v-list-item-group>
           </v-list>
         </v-card>
+        <v-pagination
+          v-if="pages > 1"
+          v-model="page"
+          :length="pages"
+          :total-visible="7"
+          next-icon="mdi-menu-right"
+          prev-icon="mdi-menu-left"
+          class="mt-4"
+        />
       </v-card-text>
     </v-card>
   </div>
@@ -43,10 +52,21 @@ import {
 } from 'vuex';
 
 export default {
+  data() {
+    return {
+      page: 1,
+    };
+  },
   computed: {
     ...mapState('team', [
       'teams',
+      'pages',
     ]),
+  },
+  watch: {
+    page() {
+      this.getUserTeams();
+    },
   },
   created() {
     this.getUserTeams();
@@ -56,7 +76,9 @@ export default {
       'fetchUserTeams',
     ]),
     getUserTeams() {
-      this.fetchUserTeams();
+      this.fetchUserTeams({
+        page: this.page,
+      });
     },
   },
 };
