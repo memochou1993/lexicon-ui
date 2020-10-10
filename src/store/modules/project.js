@@ -3,25 +3,31 @@ import axios from 'axios';
 export default {
   namespaced: true,
   state: {
-    teams: [],
+    projects: [],
+    project: null,
   },
   mutations: {
-    setTeams(state, teams) {
-      state.teams = teams;
+    setProjects(state, projects) {
+      state.projects = projects;
+    },
+    setProject(state, project) {
+      state.project = project;
     },
   },
   actions: {
-    fetchTeams({
+    fetchProjects({
       commit,
+    }, {
+      teamId,
     }) {
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
-          url: '/user/teams',
+          url: `teams/${teamId}/projects`,
         })
           .then(({ data }) => {
             setTimeout(() => {
-              commit('setTeams', data.data);
+              commit('setProjects', data.data);
             });
             resolve(data);
           })

@@ -1,23 +1,25 @@
 <template>
   <div>
-    <v-card>
+    <v-card
+      v-if="team"
+    >
       <v-card-title>
-        My Teams
+        {{ team.name }}
       </v-card-title>
       <v-card-text>
         <v-card
           flat
         >
           <v-list
+            v-if="projects.length > 0"
             flat
           >
-            <v-list-item-group>
-              <template
-                v-for="(item, index) in teams"
-              >
+            <v-list-item-group
+              color="primary"
+            >
+              <template v-for="(item, index) in projects">
                 <v-list-item
                   :key="index"
-                  :to="{ name: 'teams.show', params: { teamId: item.id } }"
                 >
                   <v-list-item-content>
                     <v-list-item-title
@@ -26,7 +28,7 @@
                   </v-list-item-content>
                 </v-list-item>
                 <v-divider
-                  v-if="index < teams.length - 1"
+                  v-if="index < projects.length - 1"
                   :key="`divider-${index}`"
                 />
               </template>
@@ -47,15 +49,26 @@ import {
 export default {
   computed: {
     ...mapState('team', [
-      'teams',
+      'team',
+    ]),
+    ...mapState('project', [
+      'projects',
     ]),
   },
   created() {
-    this.fetchUserTeams();
+    this.fetchTeam({
+      teamId: this.$route.params.teamId,
+    });
+    this.fetchProjects({
+      teamId: this.$route.params.teamId,
+    });
   },
   methods: {
+    ...mapActions('project', [
+      'fetchProjects',
+    ]),
     ...mapActions('team', [
-      'fetchUserTeams',
+      'fetchTeam',
     ]),
   },
 };

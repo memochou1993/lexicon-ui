@@ -12,7 +12,15 @@ const routes = [
   {
     path: '/teams',
     name: 'teams.index',
-    component: () => import('@/views/team/Index.vue'),
+    component: () => import(/* webpackChunkName: "teams.index" */ '@/views/team/Index.vue'),
+    meta: {
+      // requiresVisitor: true,
+    },
+  },
+  {
+    path: '/teams/:teamId',
+    name: 'teams.show',
+    component: () => import(/* webpackChunkName: "teams.show" */ '@/views/team/Show.vue'),
     meta: {
       // requiresVisitor: true,
     },
