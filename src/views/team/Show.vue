@@ -1,20 +1,20 @@
 <template>
   <div>
     <v-card
-      v-if="team"
+      v-if="team.data"
     >
       <v-card-title>
-        {{ team.name }}
+        {{ team.data.name }}
       </v-card-title>
       <v-card-text>
         <v-card
           flat
         >
           <v-list
-            v-if="projects.length > 0"
+            v-if="projects.data"
           >
             <v-list-item-group>
-              <template v-for="(project, index) in projects">
+              <template v-for="(project, index) in projects.data">
                 <v-list-item
                   :key="index"
                   :to="{ name: 'projects.show', params: { projectId: project.id } }"
@@ -50,6 +50,7 @@
 <script>
 import {
   mapState,
+  mapGetters,
   mapActions,
 } from 'vuex';
 
@@ -65,6 +66,8 @@ export default {
     ]),
     ...mapState('project', [
       'projects',
+    ]),
+    ...mapGetters('project', [
       'pages',
     ]),
   },

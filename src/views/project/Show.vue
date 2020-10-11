@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-card
-      v-if="project"
+      v-if="project.data"
     >
       <v-card-title>
-        {{ project.name }}
+        {{ project.data.name }}
       </v-card-title>
       <v-card-text>
         <v-data-table
-          v-if="keys.length > 0"
-          :items="keys"
+          v-if="keys.data"
+          :items="keys.data"
           hide-default-footer
           hide-default-header
         >
@@ -48,6 +48,7 @@
 <script>
 import {
   mapState,
+  mapGetters,
   mapActions,
 } from 'vuex';
 
@@ -60,10 +61,12 @@ export default {
   computed: {
     ...mapState('key', [
       'keys',
-      'pages',
     ]),
     ...mapState('project', [
       'project',
+    ]),
+    ...mapGetters('key', [
+      'pages',
     ]),
   },
   watch: {
@@ -91,6 +94,7 @@ export default {
     getProject() {
       this.fetchProject({
         projectId: this.$route.params.projectId,
+        relations: 'languages,languages.forms',
       });
     },
   },

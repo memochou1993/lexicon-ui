@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-card>
+    <v-card
+      v-if="teams.data"
+    >
       <v-card-title>
         My Teams
       </v-card-title>
@@ -11,7 +13,7 @@
           <v-list>
             <v-list-item-group>
               <template
-                v-for="(team, index) in teams"
+                v-for="(team, index) in teams.data"
               >
                 <v-list-item
                   :key="index"
@@ -48,6 +50,7 @@
 <script>
 import {
   mapState,
+  mapGetters,
   mapActions,
 } from 'vuex';
 
@@ -60,6 +63,8 @@ export default {
   computed: {
     ...mapState('team', [
       'teams',
+    ]),
+    ...mapGetters('team', [
       'pages',
     ]),
   },

@@ -1,21 +1,24 @@
 import axios from 'axios';
+import Base from '@/store/modules/base';
 
 export default {
   namespaced: true,
   state: {
-    projects: [],
-    project: null,
-    pages: 0,
+    projects: Base.state(),
+    project: Base.state(),
+  },
+  getters: {
+    pages(state) {
+      /** @var last_page */
+      return state.projects.meta?.last_page || 0;
+    },
   },
   mutations: {
-    setProjects(state, projects) {
-      state.projects = projects;
+    setProjects(state, payload) {
+      state.projects = Base.update(state.projects, payload);
     },
-    setProject(state, project) {
-      state.project = project;
-    },
-    setPages(state, pages) {
-      state.pages = pages;
+    setProject(state, payload) {
+      state.project = Base.update(state.project, payload);
     },
   },
   actions: {
@@ -25,6 +28,7 @@ export default {
       teamId,
       page,
     }) {
+      commit('setProjects');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -36,12 +40,12 @@ export default {
         })
           .then(({ data }) => {
             setTimeout(() => {
-              commit('setProjects', data.data);
-              commit('setPages', data.meta.last_page);
+              commit('setProjects', data);
             });
             resolve(data);
           })
           .catch((error) => {
+            commit('setProjects', error);
             reject(error);
           });
       });
@@ -52,6 +56,7 @@ export default {
       projectId,
       relations,
     }) {
+      commit('setProject');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -62,11 +67,12 @@ export default {
         })
           .then(({ data }) => {
             setTimeout(() => {
-              commit('setProject', data.data);
+              commit('setProject', data);
             });
             resolve(data);
           })
           .catch((error) => {
+            commit('setProject', error);
             reject(error);
           });
       });
