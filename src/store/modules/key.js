@@ -27,6 +27,7 @@ export default {
     }, {
       projectId,
       page,
+      relations,
     }) {
       commit('setKeys');
       return new Promise((resolve, reject) => {
@@ -36,6 +37,7 @@ export default {
           params: {
             page,
             per_page: 10,
+            relations,
           },
         })
           .then(({ data }) => {

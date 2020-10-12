@@ -7,30 +7,35 @@
         {{ project.data.name }}
       </v-card-title>
       <v-card-text>
-        <v-data-table
+        <v-simple-table
           v-if="keys.data"
-          :items="keys.data"
-          hide-default-footer
-          hide-default-header
+          class="rounded-0"
         >
           <template
-            v-slot:body="{ items }"
+            v-slot:default
           >
             <tbody>
               <tr
-                v-for="(item, index) in items"
+                v-for="(key, index) in keys.data"
                 :key="index"
               >
-                <td>
-                  {{ item.name }}
+                <td
+                  style="width: 200px;"
+                >
+                  {{ key.name }}
                 </td>
-                <td>
-                  values
+                <td
+                  class="px-0"
+                >
+                  <LanguageTable
+                    :languages="project.data.languages"
+                    :values="key.values"
+                  />
                 </td>
               </tr>
             </tbody>
           </template>
-        </v-data-table>
+        </v-simple-table>
         <v-pagination
           v-if="pages > 1"
           v-model="page"
@@ -38,7 +43,7 @@
           :total-visible="7"
           next-icon="mdi-menu-right"
           prev-icon="mdi-menu-left"
-          class="mt-4"
+          class="pt-4"
         />
       </v-card-text>
     </v-card>
@@ -51,8 +56,12 @@ import {
   mapGetters,
   mapActions,
 } from 'vuex';
+import LanguageTable from '@/components/LanguageTable';
 
 export default {
+  components: {
+    LanguageTable,
+  },
   data() {
     return {
       page: 1,
@@ -89,12 +98,18 @@ export default {
       this.fetchKeys({
         projectId: this.$route.params.projectId,
         page: this.page,
+        relations: [
+          'values',
+        ],
       });
     },
     getProject() {
       this.fetchProject({
         projectId: this.$route.params.projectId,
-        relations: 'languages,languages.forms',
+        relations: [
+          'languages',
+          'languages.forms',
+        ],
       });
     },
   },
