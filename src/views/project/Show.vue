@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <div>
     <v-card
       v-if="project.data"
     >
@@ -7,67 +7,102 @@
         {{ project.data.name }}
       </v-card-title>
       <v-card-text>
-        <v-card
+        <v-list
           v-if="keys.data"
-          flat
+          outlined
+          class="py-0"
         >
-          <v-row
+          <template
             v-for="(key, keyIndex) in keys.data"
-            :key="keyIndex"
-            align="center"
-            no-gutters
           >
-            <v-col
-              cols="3"
-              class="black--text text-center"
+            <v-list-item
+              :key="key.id"
+              class="px-0"
             >
-              {{ key.name }}
-            </v-col>
-            <v-col
-              cols="9"
-            >
-              <v-simple-table>
-                <template
-                  v-slot:default
+              <v-list-item-content
+                class="py-0"
+              >
+                <v-row
+                  align="center"
+                  no-gutters
+                  class="grey lighten-5"
                 >
-                  <tbody>
-                    <tr
-                      v-for="(language, languageIndex) in project.data.languages"
-                      :key="languageIndex"
+                  <v-col
+                    cols="3"
+                    class="text-center"
+                  >
+                    {{ key.name }}
+                  </v-col>
+                  <v-col
+                    cols="9"
+                  >
+                    <v-list
+                      class="py-0"
                     >
-                      <td
-                        style="width: 200px;"
+                      <template
+                        v-for="(language, languageIndex) in project.data.languages"
                       >
-                        {{ language.name }}
-                      </td>
-                      <td
-                        class="px-0"
-                      >
-                        <v-row
-                          v-for="(form, formIndex) in language.forms"
-                          :key="formIndex"
-                          align="center"
+                        <v-list-item
+                          :key="language.id"
+                          class="px-0"
                         >
-                          <v-col
-                            cols="3"
-                            class="text-right"
+                          <v-list-item-content
+                            class="py-0"
                           >
-                            {{ form.name }}
-                          </v-col>
-                          <v-col
-                            cols="9"
-                          >
-                            {{ getValue(key.values, language, form) || 'N/A' }}
-                          </v-col>
-                        </v-row>
-                      </td>
-                    </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </v-col>
-          </v-row>
-        </v-card>
+                            <v-simple-table>
+                              <template
+                                v-slot:default
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      style="width: 200px;"
+                                      class="grey lighten-3 text-center"
+                                    >
+                                      {{ language.name }}
+                                    </td>
+                                    <td
+                                      :class="`grey lighten-${4 + Math.abs(keyIndex - languageIndex) % 2}`"
+                                    >
+                                      <v-row
+                                        v-for="form in language.forms"
+                                        :key="form.id"
+                                      >
+                                        <v-col
+                                          cols="2"
+                                          class="text-right"
+                                        >
+                                          {{ form.name }}
+                                        </v-col>
+                                        <v-col
+                                          cols="10"
+                                        >
+                                          {{ getValue(key.values, language, form) || 'Empty' }}
+                                        </v-col>
+                                      </v-row>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </template>
+                            </v-simple-table>
+                          </v-list-item-content>
+                        </v-list-item>
+                        <v-divider
+                          v-if="languageIndex < project.data.languages.length - 1"
+                          :key="`divider-${language.id}`"
+                        />
+                      </template>
+                    </v-list>
+                  </v-col>
+                </v-row>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider
+              v-if="keyIndex < keys.data.length - 1"
+              :key="`divider-${key.id}`"
+            />
+          </template>
+        </v-list>
         <v-pagination
           v-if="pages > 1"
           v-model="page"
@@ -79,7 +114,7 @@
         />
       </v-card-text>
     </v-card>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -148,16 +183,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-tr {
-  &:not(:last-child) {
-    td {
-      border-bottom-color: transparent !important;
-    }
-  }
-  &:hover {
-    background-color: transparent !important;
-  }
-}
-</style>

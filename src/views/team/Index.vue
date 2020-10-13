@@ -7,13 +7,15 @@
         My Teams
       </v-card-title>
       <v-card-text>
-        <v-list>
+        <v-list
+          v-if="teams.data"
+        >
           <v-list-item-group>
             <template
               v-for="(team, teamIndex) in teams.data"
             >
               <v-list-item
-                :key="teamIndex"
+                :key="team.id"
                 :to="{ name: 'teams.show', params: { teamId: team.id } }"
               >
                 <v-list-item-content>
@@ -24,7 +26,7 @@
               </v-list-item>
               <v-divider
                 v-if="teamIndex < teams.length - 1"
-                :key="`divider-${teamIndex}`"
+                :key="`divider-${team.id}`"
               />
             </template>
           </v-list-item-group>

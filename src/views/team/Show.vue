@@ -13,7 +13,7 @@
           <v-list-item-group>
             <template v-for="(project, projectIndex) in projects.data">
               <v-list-item
-                :key="projectIndex"
+                :key="project.id"
                 :to="{ name: 'projects.show', params: { projectId: project.id } }"
               >
                 <v-list-item-content>
@@ -24,7 +24,7 @@
               </v-list-item>
               <v-divider
                 v-if="projectIndex < projects.length - 1"
-                :key="`divider-${projectIndex}`"
+                :key="`divider-${project.id}`"
               />
             </template>
           </v-list-item-group>
