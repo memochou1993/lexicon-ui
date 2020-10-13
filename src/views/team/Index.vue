@@ -10,10 +10,10 @@
         <v-list>
           <v-list-item-group>
             <template
-              v-for="(team, index) in teams.data"
+              v-for="(team, teamIndex) in teams.data"
             >
               <v-list-item
-                :key="index"
+                :key="teamIndex"
                 :to="{ name: 'teams.show', params: { teamId: team.id } }"
               >
                 <v-list-item-content>
@@ -23,8 +23,8 @@
                 </v-list-item-content>
               </v-list-item>
               <v-divider
-                v-if="index < teams.length - 1"
-                :key="`divider-${index}`"
+                v-if="teamIndex < teams.length - 1"
+                :key="`divider-${teamIndex}`"
               />
             </template>
           </v-list-item-group>
