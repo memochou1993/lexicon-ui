@@ -67,12 +67,19 @@
                                       <v-row
                                         v-for="form in language.forms"
                                         :key="form.id"
+                                        align="center"
                                       >
                                         <v-col
                                           cols="2"
                                           class="text-right"
                                         >
-                                          {{ form.name }}
+                                          <v-chip
+                                            color="info"
+                                            label
+                                            small
+                                          >
+                                            {{ form.name }}
+                                          </v-chip>
                                         </v-col>
                                         <v-col
                                           cols="10"
