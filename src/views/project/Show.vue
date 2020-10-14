@@ -76,6 +76,7 @@
                                           <v-chip
                                             color="info"
                                             label
+                                            ripple
                                             small
                                           >
                                             {{ form.name }}
