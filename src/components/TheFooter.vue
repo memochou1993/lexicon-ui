@@ -1,16 +1,18 @@
 <template>
-  <v-card>
-    <v-footer
-      color="primary"
-      dark
-      padless
-      tile
-    >
-      <v-col
-        class="text-center"
+  <div>
+    <v-card>
+      <v-footer
+        color="primary"
+        dark
+        padless
+        tile
       >
-        Powered by Memo Chou
-      </v-col>
-    </v-footer>
-  </v-card>
+        <v-col
+          class="text-center"
+        >
+          Powered by Memo Chou
+        </v-col>
+      </v-footer>
+    </v-card>
+  </div>
 </template>

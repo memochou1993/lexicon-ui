@@ -1,20 +1,23 @@
 <template>
   <div>
     <v-card
-      v-if="team.data"
+      v-if="team.data && projects.data"
     >
-      <v-card-title>
+      <v-card-title
+        class="pa-5"
+      >
         {{ team.data.name }}
       </v-card-title>
       <v-card-text>
-        <v-list
-          v-if="projects.data"
-        >
+        <v-list>
           <v-list-item-group>
-            <template v-for="(project, projectIndex) in projects.data">
+            <template
+              v-for="(project, projectIndex) in projects.data"
+            >
               <v-list-item
                 :key="project.id"
                 :to="{ name: 'projects.show', params: { projectId: project.id } }"
+                three-line
               >
                 <v-list-item-content>
                   <v-list-item-title
@@ -23,7 +26,7 @@
                 </v-list-item-content>
               </v-list-item>
               <v-divider
-                v-if="projectIndex < projects.length - 1"
+                v-if="projectIndex < projects.data.length - 1"
                 :key="`divider-${project.id}`"
               />
             </template>
@@ -40,6 +43,13 @@
         />
       </v-card-text>
     </v-card>
+    <v-card
+      v-else
+    >
+      <v-card-text>
+        <AppProgress />
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -49,8 +59,12 @@ import {
   mapGetters,
   mapActions,
 } from 'vuex';
+import AppProgress from '@/components/AppProgress';
 
 export default {
+  components: {
+    AppProgress,
+  },
   data() {
     return {
       page: 1,

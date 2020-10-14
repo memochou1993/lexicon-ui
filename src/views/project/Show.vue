@@ -1,14 +1,15 @@
 <template>
   <div>
     <v-card
-      v-if="project.data"
+      v-if="project.data && keys.data"
     >
-      <v-card-title>
+      <v-card-title
+        class="pa-5"
+      >
         {{ project.data.name }}
       </v-card-title>
       <v-card-text>
         <v-list
-          v-if="keys.data"
           outlined
           class="py-0"
         >
@@ -122,6 +123,13 @@
         />
       </v-card-text>
     </v-card>
+    <v-card
+      v-else
+    >
+      <v-card-text>
+        <AppProgress />
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -131,8 +139,12 @@ import {
   mapGetters,
   mapActions,
 } from 'vuex';
+import AppProgress from '@/components/AppProgress';
 
 export default {
+  components: {
+    AppProgress,
+  },
   data() {
     return {
       page: 1,
