@@ -32,7 +32,9 @@
                     cols="3"
                     class="text-center"
                   >
-                    {{ key.name }}
+                    <CellKey
+                      :item="key"
+                    />
                   </v-col>
                   <v-col
                     cols="9"
@@ -86,7 +88,11 @@
                                         <v-col
                                           cols="10"
                                         >
-                                          {{ getValue(key.values, language, form) || 'Empty' }}
+                                          <CellValue
+                                            :language="language"
+                                            :form="form"
+                                            :values="key.values"
+                                          />
                                         </v-col>
                                       </v-row>
                                     </td>
@@ -140,10 +146,14 @@ import {
   mapActions,
 } from 'vuex';
 import AppProgress from '@/components/AppProgress';
+import CellKey from '@/views/project/table/CellKey';
+import CellValue from '@/views/project/table/CellValue';
 
 export default {
   components: {
     AppProgress,
+    CellKey,
+    CellValue,
   },
   data() {
     return {
@@ -194,11 +204,6 @@ export default {
           'languages.forms',
         ],
       });
-    },
-    getValue(values, language, form) {
-      return values.find(
-        (value) => value.language.id === language.id && value.form.id === form.id,
-      )?.text;
     },
   },
 };
