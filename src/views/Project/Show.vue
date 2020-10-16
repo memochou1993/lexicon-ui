@@ -146,8 +146,8 @@ import {
   mapActions,
 } from 'vuex';
 import AppProgress from '@/components/AppProgress';
-import CellKey from '@/views/project/table/CellKey';
-import CellValue from '@/views/project/table/CellValue';
+import CellKey from '@/views/Project/Table/CellKey';
+import CellValue from '@/views/Project/Table/CellValue';
 
 export default {
   components: {
