@@ -24,3 +24,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+textarea {
+  margin-bottom: 10px;
+}
+</style>

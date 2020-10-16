@@ -37,9 +37,11 @@
           >
             <v-textarea
               autofocus
+              auto-grow
               color="info"
               flat
               hide-details
+              rows="2"
               solo
             />
           </v-card>
