@@ -65,7 +65,7 @@
                                       {{ language.name }}
                                     </td>
                                     <td
-                                      :class="`${Math.abs(keyIndex - languageIndex) % 2 ? 'white' : 'grey lighten-5'}`"
+                                      :class="`${(keyIndex + languageIndex) % 2 ? 'white' : 'grey lighten-5'}`"
                                     >
                                       <v-row
                                         v-for="form in language.forms"
