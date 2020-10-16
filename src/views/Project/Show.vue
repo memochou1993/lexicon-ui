@@ -60,12 +60,12 @@
                                   <tr>
                                     <td
                                       style="width: 200px;"
-                                      class="grey lighten-3 text-center"
+                                      class="grey lighten-4 text-center"
                                     >
                                       {{ language.name }}
                                     </td>
                                     <td
-                                      :class="`grey lighten-${4 + Math.abs(keyIndex - languageIndex) % 2}`"
+                                      :class="`${Math.abs(keyIndex - languageIndex) % 2 ? 'white' : 'grey lighten-5'}`"
                                     >
                                       <v-row
                                         v-for="form in language.forms"
@@ -77,9 +77,9 @@
                                           class="text-right"
                                         >
                                           <v-chip
-                                            color="info"
-                                            label
+                                            color="accent"
                                             ripple
+                                            outlined
                                             small
                                           >
                                             {{ form.name }}

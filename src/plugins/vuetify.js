@@ -13,7 +13,7 @@ export default new Vuetify({
     themes: {
       light: {
         primary: '#061D30',
-        secondary: colors.blueGrey,
+        secondary: colors.grey,
         accent: colors.indigo,
         error: colors.red,
         info: colors.blue,
