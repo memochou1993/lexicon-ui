@@ -54,11 +54,7 @@
 </template>
 
 <script>
-import {
-  mapState,
-  mapGetters,
-  mapActions,
-} from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
 
 export default {

@@ -26,57 +26,20 @@
           </span>
         </div>
       </template>
-      <v-card
-        color="orange lighten-5"
-      >
-        <v-card-text
-          class="pa-3"
-        >
-          <v-card
-            outlined
-          >
-            <v-textarea
-              autofocus
-              auto-grow
-              color="info"
-              flat
-              hide-details
-              rows="2"
-              solo
-            />
-          </v-card>
-        </v-card-text>
-        <v-card-actions
-          class="px-3 pt-0 pb-3"
-        >
-          <v-btn
-            color="accent lighten-1"
-            dark
-            elevation="0"
-            small
-          >
-            <v-icon>
-              mdi-check
-            </v-icon>
-          </v-btn>
-          <v-btn
-            color="accent lighten-1"
-            dark
-            outlined
-            small
-          >
-            <v-icon>
-              mdi-close
-            </v-icon>
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      <ValueCard
+        :item="value"
+      />
     </v-menu>
   </div>
 </template>
 
 <script>
+import ValueCard from '@/views/Project/Table/CellValueCard';
+
 export default {
+  components: {
+    ValueCard,
+  },
   props: {
     language: {
       type: Object,

@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import key from '@/store/modules/key';
 import project from '@/store/modules/project';
 import team from '@/store/modules/team';
+import value from '@/store/modules/value';
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     key,
     project,
     team,
+    value,
   },
   state: {
   },

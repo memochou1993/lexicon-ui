@@ -139,11 +139,7 @@
 </template>
 
 <script>
-import {
-  mapState,
-  mapGetters,
-  mapActions,
-} from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
 import CellKey from '@/views/Project/Table/CellKey';
 import CellValue from '@/views/Project/Table/CellValue';
