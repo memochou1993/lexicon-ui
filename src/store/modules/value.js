@@ -30,9 +30,30 @@ export default {
           url: `/values/${valueId}`,
         })
           .then(({ data }) => {
-            setTimeout(() => {
-              commit('setValue', data);
-            });
+            commit('setValue', data);
+            resolve(data);
+          })
+          .catch((error) => {
+            commit('setValue', error);
+            reject(error);
+          });
+      });
+    },
+    patchValue({
+      commit,
+    }, {
+      valueId,
+      params,
+    }) {
+      commit('setValue');
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'PATCH',
+          url: `/values/${valueId}`,
+          data: params,
+        })
+          .then(({ data }) => {
+            commit('setValue', data);
             resolve(data);
           })
           .catch((error) => {

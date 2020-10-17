@@ -10,7 +10,7 @@
           outlined
         >
           <v-textarea
-            :value="item.text"
+            v-model="text"
             autofocus
             auto-grow
             color="info"
@@ -29,6 +29,7 @@
           dark
           elevation="0"
           small
+          @click="updateValue()"
         >
           <v-icon>
             mdi-check
@@ -39,6 +40,7 @@
           dark
           outlined
           small
+          @click="$emit('setMenu', false)"
         >
           <v-icon>
             mdi-close
@@ -58,6 +60,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      text: this.item.text,
+    };
+  },
   computed: {
     ...mapState('value', [
       'value',
@@ -69,11 +76,24 @@ export default {
   methods: {
     ...mapActions('value', [
       'fetchValue',
+      'patchValue',
     ]),
     getValue() {
       this.fetchValue({
         valueId: this.item.id,
       });
+    },
+    updateValue() {
+      this.patchValue({
+        valueId: this.item.id,
+        params: {
+          text: this.text,
+        },
+      })
+        .then(({ data }) => {
+          this.$emit('setMenu', false);
+          this.$emit('setValue', data);
+        });
     },
   },
 };

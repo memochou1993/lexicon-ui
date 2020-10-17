@@ -39,9 +39,7 @@ export default {
           },
         })
           .then(({ data }) => {
-            setTimeout(() => {
-              commit('setProjects', data);
-            });
+            commit('setProjects', data);
             resolve(data);
           })
           .catch((error) => {
@@ -66,9 +64,7 @@ export default {
           },
         })
           .then(({ data }) => {
-            setTimeout(() => {
-              commit('setProject', data);
-            });
+            commit('setProject', data);
             resolve(data);
           })
           .catch((error) => {

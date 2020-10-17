@@ -41,9 +41,7 @@ export default {
           },
         })
           .then(({ data }) => {
-            setTimeout(() => {
-              commit('setKeys', data);
-            });
+            commit('setKeys', data);
             resolve(data);
           })
           .catch((error) => {
@@ -64,9 +62,7 @@ export default {
           url: `/keys/${keyId}`,
         })
           .then(({ data }) => {
-            setTimeout(() => {
-              commit('setKey', data);
-            });
+            commit('setKey', data);
             resolve(data);
           })
           .catch((error) => {

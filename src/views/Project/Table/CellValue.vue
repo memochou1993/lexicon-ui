@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-menu
+      v-model="menu"
       :close-on-content-click="false"
       content-class="elevation-2"
       offset-y
@@ -28,6 +29,8 @@
       </template>
       <ValueCard
         :item="value"
+        @setMenu="setMenu"
+        @setValue="setValue"
       />
     </v-menu>
   </div>
@@ -54,11 +57,25 @@ export default {
       required: true,
     },
   },
-  computed: {
-    value() {
-      return this.values.find(
+  data() {
+    return {
+      menu: false,
+      value: null,
+    };
+  },
+  created() {
+    this.setValue(
+      this.values.find(
         (value) => value.language.id === this.language.id && value.form.id === this.form.id,
-      );
+      ),
+    );
+  },
+  methods: {
+    setMenu(menu) {
+      this.menu = menu;
+    },
+    setValue(value) {
+      this.value = value;
     },
   },
 };
