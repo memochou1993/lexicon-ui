@@ -132,7 +132,11 @@
       v-else
     >
       <v-card-text>
-        <AppProgress />
+        <div
+          class="py-5 text-center"
+        >
+          <AppProgress />
+        </div>
       </v-card-text>
     </v-card>
   </div>

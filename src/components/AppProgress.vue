@@ -1,12 +1,32 @@
 <template>
-  <div
-    class="my-5 text-center"
-  >
+  <span>
     <v-progress-circular
-      :size="60"
-      :width="3"
-      color="info"
+      :color="color"
+      :size="size"
+      :width="width"
       indeterminate
     />
-  </div>
+  </span>
 </template>
+
+<script>
+export default {
+  props: {
+    color: {
+      type: String,
+      required: false,
+      default: 'info',
+    },
+    size: {
+      type: Number,
+      required: false,
+      default: 60,
+    },
+    width: {
+      type: Number,
+      required: false,
+      default: 3,
+    },
+  },
+};
+</script>

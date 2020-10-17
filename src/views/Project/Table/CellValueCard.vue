@@ -25,8 +25,8 @@
         class="px-3 pt-0 pb-3"
       >
         <v-btn
+          :disabled="item.text === text"
           color="accent lighten-1"
-          dark
           elevation="0"
           small
           @click="updateValue()"
@@ -37,7 +37,6 @@
         </v-btn>
         <v-btn
           color="accent lighten-1"
-          dark
           outlined
           small
           @click="$emit('setMenu', false)"
@@ -84,15 +83,17 @@ export default {
       });
     },
     updateValue() {
+      const { item } = this;
       this.$emit('setMenu', false);
+      this.$emit('setValue', { ...item, text: this.text });
       this.patchValue({
         valueId: this.item.id,
         params: {
           text: this.text,
         },
       })
-        .then(({ data }) => {
-          this.$emit('setValue', data);
+        .catch(() => {
+          this.$emit('setValue', item);
         });
     },
   },

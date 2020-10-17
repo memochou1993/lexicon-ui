@@ -14,7 +14,7 @@
           v-on="on"
         >
           <span
-            v-if="value"
+            v-if="value && value.text"
             class="info--text"
           >
             {{ value.text }}
