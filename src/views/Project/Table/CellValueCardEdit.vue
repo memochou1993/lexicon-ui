@@ -70,7 +70,6 @@ export default {
     ]),
   },
   created() {
-    console.log('edit');
     this.getValue();
   },
   methods: {

@@ -33,7 +33,7 @@
                     class="text-center"
                   >
                     <CellKey
-                      :item="key"
+                      :injected-key="key"
                     />
                   </v-col>
                   <v-col
