@@ -77,7 +77,6 @@
                                           class="text-right"
                                         >
                                           <v-chip
-                                            color="accent"
                                             ripple
                                             outlined
                                             small
