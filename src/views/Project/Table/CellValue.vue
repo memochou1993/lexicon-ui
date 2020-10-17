@@ -27,8 +27,17 @@
           </span>
         </div>
       </template>
-      <ValueCard
-        :item="value"
+      <CellValueCardEdit
+        v-if="value && value.id"
+        :injected-value="value"
+        @setMenu="setMenu"
+        @setValue="setValue"
+      />
+      <CellValueCardCreate
+        v-else
+        :injected-key="injectedKey"
+        :injected-language="injectedLanguage"
+        :injected-form="injectedForm"
         @setMenu="setMenu"
         @setValue="setValue"
       />
@@ -37,22 +46,28 @@
 </template>
 
 <script>
-import ValueCard from '@/views/Project/Table/CellValueCard';
+import CellValueCardCreate from '@/views/Project/Table/CellValueCardCreate';
+import CellValueCardEdit from '@/views/Project/Table/CellValueCardEdit';
 
 export default {
   components: {
-    ValueCard,
+    CellValueCardCreate,
+    CellValueCardEdit,
   },
   props: {
-    language: {
+    injectedKey: {
       type: Object,
       required: true,
     },
-    form: {
+    injectedLanguage: {
       type: Object,
       required: true,
     },
-    values: {
+    injectedForm: {
+      type: Object,
+      required: true,
+    },
+    injectedValues: {
       type: Array,
       required: true,
     },
@@ -65,8 +80,8 @@ export default {
   },
   created() {
     this.setValue(
-      this.values.find(
-        (value) => value.language.id === this.language.id && value.form.id === this.form.id,
+      this.injectedValues.find(
+        (value) => value.language.id === this.injectedLanguage.id && value.form.id === this.injectedForm.id,
       ),
     );
   },

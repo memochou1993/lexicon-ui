@@ -88,9 +88,10 @@
                                           cols="10"
                                         >
                                           <CellValue
-                                            :language="language"
-                                            :form="form"
-                                            :values="key.values"
+                                            :injected-key="key"
+                                            :injected-language="language"
+                                            :injected-form="form"
+                                            :injected-values="key.values"
                                           />
                                         </v-col>
                                       </v-row>

@@ -18,6 +18,35 @@ export default {
     },
   },
   actions: {
+    storeValue({
+      commit,
+    }, {
+      keyId,
+      text,
+      languageId,
+      formId,
+    }) {
+      commit('setValueData');
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'POST',
+          url: `keys/${keyId}/values`,
+          data: {
+            text,
+            language_id: languageId,
+            form_id: formId,
+          },
+        })
+          .then(({ data }) => {
+            commit('setValueData', data);
+            resolve(data);
+          })
+          .catch((error) => {
+            commit('setValueData', error);
+            reject(error);
+          });
+      });
+    },
     fetchValue({
       commit,
     }, {
@@ -39,18 +68,20 @@ export default {
           });
       });
     },
-    patchValue({
+    updateValue({
       commit,
     }, {
       valueId,
-      params,
+      text,
     }) {
       commit('setValueData');
       return new Promise((resolve, reject) => {
         axios({
           method: 'PATCH',
           url: `/values/${valueId}`,
-          data: params,
+          data: {
+            text,
+          },
         })
           .then(({ data }) => {
             commit('setValueData', data);

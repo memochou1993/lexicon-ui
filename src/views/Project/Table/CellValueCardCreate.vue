@@ -25,11 +25,11 @@
         class="px-3 pt-0 pb-3"
       >
         <v-btn
-          :disabled="item.text === text"
+          :disabled="!text"
           color="accent lighten-1"
           elevation="0"
           small
-          @click="updateValue()"
+          @click="createValue()"
         >
           <v-icon>
             mdi-check
@@ -50,50 +50,46 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   props: {
-    item: {
+    injectedKey: {
+      type: Object,
+      required: true,
+    },
+    injectedLanguage: {
+      type: Object,
+      required: true,
+    },
+    injectedForm: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      text: this.item.text,
+      text: '',
     };
-  },
-  computed: {
-    ...mapState('value', [
-      'valueData',
-    ]),
-  },
-  created() {
-    this.getValue();
   },
   methods: {
     ...mapActions('value', [
-      'fetchValue',
-      'patchValue',
+      'storeValue',
     ]),
-    getValue() {
-      this.fetchValue({
-        valueId: this.item.id,
-      });
-    },
-    updateValue() {
-      const { item } = this;
+    createValue() {
       this.$emit('setMenu', false);
-      this.$emit('setValue', { ...item, text: this.text });
-      this.patchValue({
-        valueId: this.item.id,
-        params: {
-          text: this.text,
-        },
+      this.$emit('setValue', { text: this.text });
+      this.storeValue({
+        keyId: this.injectedKey.id,
+        text: this.text,
+        languageId: this.injectedLanguage.id,
+        formId: this.injectedForm.id,
       })
+        .then(({ data }) => {
+          this.$emit('setValue', data);
+        })
         .catch(() => {
-          this.$emit('setValue', item);
+          this.$emit('setValue', null);
         });
     },
   },
