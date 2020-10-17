@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card
-      v-if="teams.data"
+      v-if="teamList.data"
     >
       <v-card-title
         class="pa-5"
@@ -12,7 +12,7 @@
         <v-list>
           <v-list-item-group>
             <template
-              v-for="(team, teamIndex) in teams.data"
+              v-for="(team, teamIndex) in teamList.data"
             >
               <v-list-item
                 :key="team.id"
@@ -26,7 +26,7 @@
                 </v-list-item-content>
               </v-list-item>
               <v-divider
-                v-if="teamIndex < teams.data.length - 1"
+                v-if="teamIndex < teamList.data.length - 1"
                 :key="`divider-${team.id}`"
               />
             </template>
@@ -68,7 +68,7 @@ export default {
   },
   computed: {
     ...mapState('team', [
-      'teams',
+      'teamList',
     ]),
     ...mapGetters('team', [
       'pages',

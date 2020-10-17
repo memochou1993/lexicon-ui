@@ -4,21 +4,21 @@ import Base from '@/store/modules/base';
 export default {
   namespaced: true,
   state: {
-    teams: Base.state(),
-    team: Base.state(),
+    teamList: Base.state(),
+    teamData: Base.state(),
   },
   getters: {
     pages(state) {
       /** @var last_page */
-      return state.teams.meta?.last_page || 0;
+      return state.teamList.meta?.last_page || 0;
     },
   },
   mutations: {
-    setTeams(state, payload) {
-      state.teams = Base.update(state.teams, payload);
+    setTeamList(state, payload) {
+      state.teamList = Base.update(state.teamList, payload);
     },
-    setTeam(state, payload) {
-      state.team = Base.update(state.team, payload);
+    setTeamData(state, payload) {
+      state.teamData = Base.update(state.teamData, payload);
     },
   },
   actions: {
@@ -27,7 +27,7 @@ export default {
     }, {
       page,
     }) {
-      commit('setTeams');
+      commit('setTeamList');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -38,11 +38,11 @@ export default {
           },
         })
           .then(({ data }) => {
-            commit('setTeams', data);
+            commit('setTeamList', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setTeams', error);
+            commit('setTeamList', error);
             reject(error);
           });
       });
@@ -52,18 +52,18 @@ export default {
     }, {
       teamId,
     }) {
-      commit('setTeam');
+      commit('setTeamData');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
           url: `/teams/${teamId}`,
         })
           .then(({ data }) => {
-            commit('setTeam', data);
+            commit('setTeamData', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setTeam', error);
+            commit('setTeamData', error);
             reject(error);
           });
       });

@@ -4,21 +4,21 @@ import Base from '@/store/modules/base';
 export default {
   namespaced: true,
   state: {
-    keys: Base.state(),
-    key: Base.state(),
+    keyList: Base.state(),
+    keyData: Base.state(),
   },
   getters: {
     pages(state) {
       /** @var last_page */
-      return state.keys.meta?.last_page || 0;
+      return state.keyList.meta?.last_page || 0;
     },
   },
   mutations: {
-    setKeys(state, payload) {
-      state.keys = Base.update(state.keys, payload);
+    setKeyList(state, payload) {
+      state.keyList = Base.update(state.keyList, payload);
     },
-    setKey(state, payload) {
-      state.key = Base.update(state.key, payload);
+    setKeyData(state, payload) {
+      state.keyData = Base.update(state.keyData, payload);
     },
   },
   actions: {
@@ -29,7 +29,7 @@ export default {
       page,
       relations,
     }) {
-      commit('setKeys');
+      commit('setKeyList');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -41,11 +41,11 @@ export default {
           },
         })
           .then(({ data }) => {
-            commit('setKeys', data);
+            commit('setKeyList', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setKeys', error);
+            commit('setKeyList', error);
             reject(error);
           });
       });
@@ -55,18 +55,18 @@ export default {
     }, {
       keyId,
     }) {
-      commit('setKey');
+      commit('setKeyData');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
           url: `/keys/${keyId}`,
         })
           .then(({ data }) => {
-            commit('setKey', data);
+            commit('setKeyData', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setKey', error);
+            commit('setKeyData', error);
             reject(error);
           });
       });

@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-card
-      v-if="project.data && keys.data"
+      v-if="projectData.data && keyList.data"
     >
       <v-card-title
         class="pa-5"
       >
-        {{ project.data.name }}
+        {{ projectData.data.name }}
       </v-card-title>
       <v-card-text>
         <v-list
@@ -14,7 +14,7 @@
           class="py-0"
         >
           <template
-            v-for="(key, keyIndex) in keys.data"
+            v-for="(key, keyIndex) in keyList.data"
           >
             <v-list-item
               :key="key.id"
@@ -43,7 +43,7 @@
                       class="py-0"
                     >
                       <template
-                        v-for="(language, languageIndex) in project.data.languages"
+                        v-for="(language, languageIndex) in projectData.data.languages"
                       >
                         <v-list-item
                           :key="language.id"
@@ -102,7 +102,7 @@
                           </v-list-item-content>
                         </v-list-item>
                         <v-divider
-                          v-if="languageIndex < project.data.languages.length - 1"
+                          v-if="languageIndex < projectData.data.languages.length - 1"
                           :key="`divider-${language.id}`"
                         />
                       </template>
@@ -112,7 +112,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-divider
-              v-if="keyIndex < keys.data.length - 1"
+              v-if="keyIndex < keyList.data.length - 1"
               :key="`divider-${key.id}`"
             />
           </template>
@@ -157,10 +157,10 @@ export default {
   },
   computed: {
     ...mapState('key', [
-      'keys',
+      'keyList',
     ]),
     ...mapState('project', [
-      'project',
+      'projectData',
     ]),
     ...mapGetters('key', [
       'pages',

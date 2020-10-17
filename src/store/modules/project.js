@@ -4,21 +4,21 @@ import Base from '@/store/modules/base';
 export default {
   namespaced: true,
   state: {
-    projects: Base.state(),
-    project: Base.state(),
+    projectList: Base.state(),
+    projectData: Base.state(),
   },
   getters: {
     pages(state) {
       /** @var last_page */
-      return state.projects.meta?.last_page || 0;
+      return state.projectList.meta?.last_page || 0;
     },
   },
   mutations: {
-    setProjects(state, payload) {
-      state.projects = Base.update(state.projects, payload);
+    setProjectList(state, payload) {
+      state.projectList = Base.update(state.projectList, payload);
     },
-    setProject(state, payload) {
-      state.project = Base.update(state.project, payload);
+    setProjectData(state, payload) {
+      state.projectData = Base.update(state.projectData, payload);
     },
   },
   actions: {
@@ -28,7 +28,7 @@ export default {
       teamId,
       page,
     }) {
-      commit('setProjects');
+      commit('setProjectList');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -39,11 +39,11 @@ export default {
           },
         })
           .then(({ data }) => {
-            commit('setProjects', data);
+            commit('setProjectList', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setProjects', error);
+            commit('setProjectList', error);
             reject(error);
           });
       });
@@ -54,7 +54,7 @@ export default {
       projectId,
       relations,
     }) {
-      commit('setProject');
+      commit('setProjectData');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -64,11 +64,11 @@ export default {
           },
         })
           .then(({ data }) => {
-            commit('setProject', data);
+            commit('setProjectData', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setProject', error);
+            commit('setProjectData', error);
             reject(error);
           });
       });

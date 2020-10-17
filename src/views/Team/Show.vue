@@ -1,18 +1,18 @@
 <template>
   <div>
     <v-card
-      v-if="team.data && projects.data"
+      v-if="teamData.data && projectList.data"
     >
       <v-card-title
         class="pa-5"
       >
-        {{ team.data.name }}
+        {{ teamData.data.name }}
       </v-card-title>
       <v-card-text>
         <v-list>
           <v-list-item-group>
             <template
-              v-for="(project, projectIndex) in projects.data"
+              v-for="(project, projectIndex) in projectList.data"
             >
               <v-list-item
                 :key="project.id"
@@ -26,7 +26,7 @@
                 </v-list-item-content>
               </v-list-item>
               <v-divider
-                v-if="projectIndex < projects.data.length - 1"
+                v-if="projectIndex < projectList.data.length - 1"
                 :key="`divider-${project.id}`"
               />
             </template>
@@ -68,10 +68,10 @@ export default {
   },
   computed: {
     ...mapState('team', [
-      'team',
+      'teamData',
     ]),
     ...mapState('project', [
-      'projects',
+      'projectList',
     ]),
     ...mapGetters('project', [
       'pages',

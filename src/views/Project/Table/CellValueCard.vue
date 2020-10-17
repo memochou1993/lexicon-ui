@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     ...mapState('value', [
-      'value',
+      'valueData',
     ]),
   },
   created() {
@@ -84,6 +84,7 @@ export default {
       });
     },
     updateValue() {
+      this.$emit('setMenu', false);
       this.patchValue({
         valueId: this.item.id,
         params: {
@@ -91,7 +92,6 @@ export default {
         },
       })
         .then(({ data }) => {
-          this.$emit('setMenu', false);
           this.$emit('setValue', data);
         });
     },

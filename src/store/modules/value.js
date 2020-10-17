@@ -4,7 +4,7 @@ import Base from '@/store/modules/base';
 export default {
   namespaced: true,
   state: {
-    value: Base.state(),
+    valueData: Base.state(),
   },
   getters: {
     pages(state) {
@@ -13,8 +13,8 @@ export default {
     },
   },
   mutations: {
-    setValue(state, payload) {
-      state.value = Base.update(state.value, payload);
+    setValueData(state, payload) {
+      state.valueData = Base.update(state.valueData, payload);
     },
   },
   actions: {
@@ -23,18 +23,18 @@ export default {
     }, {
       valueId,
     }) {
-      commit('setValue');
+      commit('setValueData');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
           url: `/values/${valueId}`,
         })
           .then(({ data }) => {
-            commit('setValue', data);
+            commit('setValueData', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setValue', error);
+            commit('setValueData', error);
             reject(error);
           });
       });
@@ -45,7 +45,7 @@ export default {
       valueId,
       params,
     }) {
-      commit('setValue');
+      commit('setValueData');
       return new Promise((resolve, reject) => {
         axios({
           method: 'PATCH',
@@ -53,11 +53,11 @@ export default {
           data: params,
         })
           .then(({ data }) => {
-            commit('setValue', data);
+            commit('setValueData', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setValue', error);
+            commit('setValueData', error);
             reject(error);
           });
       });
