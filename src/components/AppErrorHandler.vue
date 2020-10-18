@@ -41,7 +41,7 @@ export default {
       'error',
     ]),
     message() {
-      return this.error?.response?.data?.message || this.error.message;
+      return this.error?.response?.data?.message || this.error?.message || '';
     },
     status() {
       return this.error?.response?.status || '0';
