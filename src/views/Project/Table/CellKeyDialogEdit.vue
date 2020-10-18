@@ -64,6 +64,10 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   props: {
+    dialog: {
+      type: Boolean,
+      required: true,
+    },
     injectedKey: {
       type: Object,
       required: true,
@@ -95,6 +99,11 @@ export default {
     },
   },
   watch: {
+    dialog(value) {
+      if (value) {
+        this.reset();
+      }
+    },
     inputs() {
       if (!this.valid) {
         this.setErrors({});

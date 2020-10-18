@@ -53,6 +53,10 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   props: {
+    menu: {
+      type: Boolean,
+      required: true,
+    },
     injectedValue: {
       type: Object,
       required: true,
@@ -68,6 +72,13 @@ export default {
       'valueData',
     ]),
   },
+  watch: {
+    menu(value) {
+      if (value) {
+        this.reset();
+      }
+    },
+  },
   created() {
     this.getValue();
   },
@@ -77,6 +88,12 @@ export default {
       'fetchValue',
       'updateValue',
     ]),
+    setText(text) {
+      this.text = text;
+    },
+    reset() {
+      this.setText(this.injectedValue.text);
+    },
     getValue() {
       this.fetchValue({
         valueId: this.injectedValue.id,

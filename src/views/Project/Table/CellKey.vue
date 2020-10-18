@@ -16,6 +16,7 @@
         </span>
       </template>
       <CellKeyDialogEdit
+        :dialog="dialog"
         :injected-key="key"
         @setDialog="setDialog"
         @setKey="setKey"

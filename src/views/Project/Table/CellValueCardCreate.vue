@@ -53,6 +53,10 @@ import { mapActions } from 'vuex';
 
 export default {
   props: {
+    menu: {
+      type: Boolean,
+      required: true,
+    },
     injectedKey: {
       type: Object,
       required: true,
@@ -71,10 +75,23 @@ export default {
       text: '',
     };
   },
+  watch: {
+    menu(value) {
+      if (value) {
+        this.reset();
+      }
+    },
+  },
   methods: {
     ...mapActions('value', [
       'storeValue',
     ]),
+    setText(text) {
+      this.text = text;
+    },
+    reset() {
+      this.setText('');
+    },
     createValue() {
       this.$emit('setMenu', false);
       this.$emit('setValue', { text: this.text });

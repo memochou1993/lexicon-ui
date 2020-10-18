@@ -34,12 +34,14 @@
       </template>
       <CellValueCardEdit
         v-if="value && value.id"
+        :menu="menu"
         :injected-value="value"
         @setMenu="setMenu"
         @setValue="setValue"
       />
       <CellValueCardCreate
         v-else
+        :menu="menu"
         :injected-key="injectedKey"
         :injected-language="injectedLanguage"
         :injected-form="injectedForm"
