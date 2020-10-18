@@ -37,6 +37,7 @@
           color="primary lighten-1"
           outlined
           small
+          text
           @click="$emit('setMenu', false)"
         >
           <v-icon>
