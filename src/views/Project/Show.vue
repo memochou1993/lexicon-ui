@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
 import CellKey from '@/views/Project/Table/CellKey';
 import CellValue from '@/views/Project/Table/CellValue';
@@ -167,9 +167,9 @@ export default {
     ...mapState('project', [
       'projectData',
     ]),
-    ...mapGetters('key', [
-      'pages',
-    ]),
+    pages() {
+      return this.keyList.meta?.last_page || 0;
+    },
   },
   watch: {
     page() {

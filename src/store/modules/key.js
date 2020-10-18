@@ -7,12 +7,6 @@ export default {
     keyList: Base.state(),
     keyData: Base.state(),
   },
-  getters: {
-    pages(state) {
-      /** @var last_page */
-      return state.keyList.meta?.last_page || 0;
-    },
-  },
   mutations: {
     setKeyList(state, payload) {
       state.keyList = Base.update(state.keyList, payload);

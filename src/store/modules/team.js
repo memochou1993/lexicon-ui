@@ -7,12 +7,6 @@ export default {
     teamList: Base.state(),
     teamData: Base.state(),
   },
-  getters: {
-    pages(state) {
-      /** @var last_page */
-      return state.teamList.meta?.last_page || 0;
-    },
-  },
   mutations: {
     setTeamList(state, payload) {
       state.teamList = Base.update(state.teamList, payload);

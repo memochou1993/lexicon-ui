@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
 
 export default {
@@ -74,9 +74,9 @@ export default {
     ...mapState('team', [
       'teamList',
     ]),
-    ...mapGetters('team', [
-      'pages',
-    ]),
+    pages() {
+      return this.teamList.meta?.last_page || 0;
+    },
   },
   watch: {
     page() {

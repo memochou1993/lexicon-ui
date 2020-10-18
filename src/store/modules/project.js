@@ -7,12 +7,6 @@ export default {
     projectList: Base.state(),
     projectData: Base.state(),
   },
-  getters: {
-    pages(state) {
-      /** @var last_page */
-      return state.projectList.meta?.last_page || 0;
-    },
-  },
   mutations: {
     setProjectList(state, payload) {
       state.projectList = Base.update(state.projectList, payload);

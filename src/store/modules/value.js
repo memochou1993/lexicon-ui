@@ -6,12 +6,6 @@ export default {
   state: {
     valueData: Base.state(),
   },
-  getters: {
-    pages(state) {
-      /** @var last_page */
-      return state.values.meta?.last_page || 0;
-    },
-  },
   mutations: {
     setValueData(state, payload) {
       state.valueData = Base.update(state.valueData, payload);
