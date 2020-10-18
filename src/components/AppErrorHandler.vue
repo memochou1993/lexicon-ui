@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-snackbar
+      v-if="!hidden.includes(status)"
       :timeout="10000"
       :value="error"
       bottom
@@ -28,12 +29,22 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
+  data() {
+    return {
+      hidden: [
+        '422',
+      ],
+    };
+  },
   computed: {
     ...mapState([
       'error',
     ]),
     message() {
-      return this?.error?.response?.data?.message || this?.error?.message || '';
+      return this.error?.response?.data?.message || this.error.message;
+    },
+    status() {
+      return this.error?.response?.status || '0';
     },
   },
   methods: {

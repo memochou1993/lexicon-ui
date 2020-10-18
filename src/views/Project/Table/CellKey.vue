@@ -12,54 +12,25 @@
           v-bind="attrs"
           v-on="on"
         >
-          {{ injectedKey.name }}
+          {{ key.name }}
         </span>
       </template>
-      <v-card>
-        <v-card-title
-          class="pa-3"
-        >
-          <v-spacer />
-          <v-icon
-            small
-            @click="setDialog(false)"
-          >
-            mdi-close
-          </v-icon>
-        </v-card-title>
-        <v-divider />
-        <v-card-text
-          class="pa-5"
-        >
-          {{ injectedKey.name }}
-        </v-card-text>
-        <v-divider />
-        <v-card-actions>
-          <v-btn
-            color="primary"
-            outlined
-            small
-            @click="setDialog(false)"
-          >
-            Reset
-          </v-btn>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            elevation="0"
-            small
-            @click="setDialog(false)"
-          >
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      <CellKeyDialogEdit
+        :injected-key="key"
+        @setDialog="setDialog"
+        @setKey="setKey"
+      />
     </v-dialog>
   </div>
 </template>
 
 <script>
+import CellKeyDialogEdit from '@/views/Project/Table/CellKeyDialogEdit';
+
 export default {
+  components: {
+    CellKeyDialogEdit,
+  },
   props: {
     injectedKey: {
       type: Object,
@@ -69,11 +40,15 @@ export default {
   data() {
     return {
       dialog: false,
+      key: this.injectedKey,
     };
   },
   methods: {
     setDialog(dialog) {
       this.dialog = dialog;
+    },
+    setKey(key) {
+      this.key = key;
     },
   },
 };

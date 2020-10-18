@@ -67,5 +67,31 @@ export default {
           });
       });
     },
+    updateKey({
+      commit,
+    }, {
+      keyId,
+      name,
+    }) {
+      commit('setKeyData');
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'PATCH',
+          url: `/keys/${keyId}`,
+          data: {
+            name,
+          },
+        })
+          .then(({ data }) => {
+            commit('setKeyData', data);
+            resolve(data);
+          })
+          .catch((error) => {
+            commit('setKeyData', error);
+            commit('setError', error, { root: true });
+            reject(error);
+          });
+      });
+    },
   },
 };
