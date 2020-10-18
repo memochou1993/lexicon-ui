@@ -11,16 +11,14 @@
       <template
         v-slot:action="{ attrs }"
       >
-        <v-btn
-          v-bind="attrs"
+        <v-icon
           color="error"
           icon
+          v-bind="attrs"
           @click="setError(null)"
         >
-          <v-icon>
-            mdi-close
-          </v-icon>
-        </v-btn>
+          mdi-close
+        </v-icon>
       </template>
     </v-snackbar>
   </div>
