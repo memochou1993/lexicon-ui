@@ -46,6 +46,7 @@ export default {
           })
           .catch((error) => {
             commit('setKeyList', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
@@ -67,6 +68,7 @@ export default {
           })
           .catch((error) => {
             commit('setKeyData', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });

@@ -44,6 +44,7 @@ export default {
           })
           .catch((error) => {
             commit('setProjectList', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
@@ -69,6 +70,7 @@ export default {
           })
           .catch((error) => {
             commit('setProjectData', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });

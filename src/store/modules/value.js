@@ -43,6 +43,7 @@ export default {
           })
           .catch((error) => {
             commit('setValueData', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
@@ -64,6 +65,7 @@ export default {
           })
           .catch((error) => {
             commit('setValueData', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
@@ -89,6 +91,7 @@ export default {
           })
           .catch((error) => {
             commit('setValueData', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });

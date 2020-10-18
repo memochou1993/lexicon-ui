@@ -15,9 +15,11 @@ export default new Vuex.Store({
     value,
   },
   state: {
+    error: null,
   },
   mutations: {
-  },
-  actions: {
+    setError(state, error) {
+      state.error = error;
+    },
   },
 });

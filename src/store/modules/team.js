@@ -43,6 +43,7 @@ export default {
           })
           .catch((error) => {
             commit('setTeamList', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
@@ -64,6 +65,7 @@ export default {
           })
           .catch((error) => {
             commit('setTeamData', error);
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
