@@ -1,8 +1,13 @@
 <template>
   <div>
+    <v-overlay
+      :value="menu"
+      :z-index="1"
+    />
     <v-menu
       v-model="menu"
       :close-on-content-click="false"
+      :z-index="1"
       content-class="elevation-2"
       offset-y
     >
@@ -21,7 +26,7 @@
           </span>
           <span
             v-else
-            class="error--text"
+            class="red--text"
           >
             Empty
           </span>

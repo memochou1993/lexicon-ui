@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-card
-      color="orange lighten-5"
-    >
+    <v-card>
       <v-card-text
         class="pa-3"
       >
@@ -13,7 +11,7 @@
             v-model="text"
             autofocus
             auto-grow
-            color="info"
+            color="primary"
             flat
             hide-details
             rows="2"
@@ -26,7 +24,7 @@
       >
         <v-btn
           :disabled="!text"
-          color="accent lighten-1"
+          color="primary lighten-1"
           elevation="0"
           small
           @click="createValue()"
@@ -36,7 +34,7 @@
           </v-icon>
         </v-btn>
         <v-btn
-          color="accent lighten-1"
+          color="primary lighten-1"
           outlined
           small
           @click="$emit('setMenu', false)"
