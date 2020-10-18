@@ -26,18 +26,20 @@
                 <v-row
                   align="center"
                   no-gutters
-                  class="grey lighten-5"
+                  :class="$vuetify.breakpoint.mdAndUp ? 'grey lighten-5' : 'grey lighten-2'"
                 >
                   <v-col
-                    cols="3"
-                    class="text-center"
+                    cols="12"
+                    md="3"
+                    class="pa-5 text-md-center"
                   >
                     <CellKey
                       :injected-key="key"
                     />
                   </v-col>
                   <v-col
-                    cols="9"
+                    cols="12"
+                    md="9"
                   >
                     <v-list
                       class="py-0"
@@ -65,7 +67,7 @@
                                       {{ language.name }}
                                     </td>
                                     <td
-                                      :class="`${(keyIndex + languageIndex) % 2 ? 'white' : 'grey lighten-5'}`"
+                                      :class="(keyIndex + languageIndex) % 2 ? 'white' : 'grey lighten-5'"
                                     >
                                       <v-row
                                         v-for="form in language.forms"
@@ -73,8 +75,9 @@
                                         align="center"
                                       >
                                         <v-col
-                                          cols="2"
-                                          class="text-right"
+                                          cols="12"
+                                          md="2"
+                                          class="text-md-right"
                                         >
                                           <v-chip
                                             ripple
@@ -85,7 +88,8 @@
                                           </v-chip>
                                         </v-col>
                                         <v-col
-                                          cols="10"
+                                          cols="12"
+                                          md="10"
                                         >
                                           <CellValue
                                             :injected-key="key"
