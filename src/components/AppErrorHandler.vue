@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       hidden: [
-        '422',
+        422,
       ],
     };
   },
@@ -44,7 +44,7 @@ export default {
       return this.error?.response?.data?.message || this.error?.message || '';
     },
     status() {
-      return this.error?.response?.status || '0';
+      return this.error?.response?.status || 0;
     },
   },
   methods: {
