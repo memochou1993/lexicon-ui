@@ -19,7 +19,7 @@
         </v-card-title>
         <v-divider />
         <v-card-text
-          class="pa-5"
+          class="pt-4 pb-0"
         >
           <v-text-field
             v-model="name"
