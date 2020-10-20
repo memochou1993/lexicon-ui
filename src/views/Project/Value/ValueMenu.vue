@@ -76,7 +76,8 @@ export default {
     },
     injectedValues: {
       type: Array,
-      required: true,
+      required: false,
+      default: Array,
     },
   },
   data() {

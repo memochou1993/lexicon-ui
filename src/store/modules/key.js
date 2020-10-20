@@ -17,6 +17,7 @@ export default {
   },
   actions: {
     storeKey({
+      state,
       commit,
     }, {
       projectId,
@@ -33,7 +34,7 @@ export default {
         })
           .then(({ data }) => {
             commit('setKeyData', data);
-            // TODO: setKeyList
+            commit('setKeyList', { ...state.keyList, data: [data.data, ...state.keyList.data] });
             resolve(data);
           })
           .catch((error) => {
