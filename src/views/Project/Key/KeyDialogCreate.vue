@@ -11,7 +11,6 @@
           color="primary"
           outlined
           small
-          class="mr-3 mb-3"
           v-bind="attrs"
           v-on="on"
         >

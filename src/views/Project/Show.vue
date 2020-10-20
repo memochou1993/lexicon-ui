@@ -9,7 +9,16 @@
         {{ projectData.data.name }}
       </v-card-title>
       <v-card-text>
-        <KeyDialogCreate />
+        <v-card
+          flat
+        >
+          <v-card-actions
+            class="px-0"
+          >
+            <v-spacer />
+            <KeyDialogCreate />
+          </v-card-actions>
+        </v-card>
         <v-list
           outlined
           class="py-0"

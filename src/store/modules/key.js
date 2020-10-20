@@ -58,8 +58,8 @@ export default {
           url: `projects/${projectId}/keys`,
           params: {
             page,
-            per_page: 10,
             relations,
+            per_page: 10,
           },
         })
           .then(({ data }) => {
