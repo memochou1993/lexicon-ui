@@ -23,7 +23,6 @@
         class="px-3 pt-0 pb-3"
       >
         <v-btn
-          :disabled="injectedValue.text === text"
           color="primary lighten-1"
           elevation="0"
           small
