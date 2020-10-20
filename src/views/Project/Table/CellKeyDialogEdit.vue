@@ -34,7 +34,7 @@
         <v-divider />
         <v-card-actions>
           <v-btn
-            :disabled="consistent || keyData.status.loading"
+            :disabled="!dialog || consistent || keyData.status.loading"
             color="primary"
             outlined
             small
@@ -45,7 +45,7 @@
           </v-btn>
           <v-spacer />
           <v-btn
-            :disabled="consistent || keyData.status.loading || !valid"
+            :disabled="!dialog || keyData.status.loading || !valid"
             color="primary"
             elevation="0"
             small
