@@ -20,6 +20,9 @@ export default {
       commit,
     }, {
       page,
+      sort = 'created_at',
+      direction = 'asc',
+      perPage = 100,
     }) {
       commit('setTeamList');
       return new Promise((resolve, reject) => {
@@ -28,7 +31,9 @@ export default {
           url: '/user/teams',
           params: {
             page,
-            per_page: 100,
+            sort,
+            direction,
+            per_page: perPage,
           },
         })
           .then(({ data }) => {

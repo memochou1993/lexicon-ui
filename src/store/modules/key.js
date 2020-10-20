@@ -50,6 +50,9 @@ export default {
       projectId,
       page,
       relations,
+      sort = 'created_at',
+      direction = 'desc',
+      perPage = 10,
     }) {
       commit('setKeyList');
       return new Promise((resolve, reject) => {
@@ -59,7 +62,9 @@ export default {
           params: {
             page,
             relations,
-            per_page: 10,
+            sort,
+            direction,
+            per_page: perPage,
           },
         })
           .then(({ data }) => {
