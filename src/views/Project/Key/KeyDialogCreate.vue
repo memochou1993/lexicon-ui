@@ -7,49 +7,40 @@
       <template
         v-slot:activator="{ on, attrs }"
       >
-        <span
-          class="info--text text-h6 text-md-body-2"
+        <v-btn
+          color="primary"
+          outlined
+          small
+          class="mr-3 mb-3"
           v-bind="attrs"
           v-on="on"
         >
-          {{ key.name }}
-        </span>
+          Add Key
+        </v-btn>
       </template>
-      <CellKeyDialogEdit
+      <KeyFormCreate
         :dialog="dialog"
-        :injected-key="key"
         @setDialog="setDialog"
-        @setKey="setKey"
       />
     </v-dialog>
   </div>
 </template>
 
 <script>
-import CellKeyDialogEdit from '@/views/Project/Table/CellKeyDialogEdit';
+import KeyFormCreate from '@/views/Project/Key/KeyFormCreate';
 
 export default {
   components: {
-    CellKeyDialogEdit,
-  },
-  props: {
-    injectedKey: {
-      type: Object,
-      required: true,
-    },
+    KeyFormCreate,
   },
   data() {
     return {
       dialog: false,
-      key: this.injectedKey,
     };
   },
   methods: {
     setDialog(dialog) {
       this.dialog = dialog;
-    },
-    setKey(key) {
-      this.key = key;
     },
   },
 };

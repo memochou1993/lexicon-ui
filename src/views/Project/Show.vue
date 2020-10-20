@@ -9,6 +9,7 @@
         {{ projectData.data.name }}
       </v-card-title>
       <v-card-text>
+        <KeyDialogCreate />
         <v-list
           outlined
           class="py-0"
@@ -33,7 +34,7 @@
                     md="3"
                     class="pa-5 text-md-center"
                   >
-                    <CellKey
+                    <KeyDialogEdit
                       :injected-key="key"
                     />
                   </v-col>
@@ -91,7 +92,7 @@
                                           cols="12"
                                           md="10"
                                         >
-                                          <CellValue
+                                          <ValueMenu
                                             :injected-key="key"
                                             :injected-language="language"
                                             :injected-form="form"
@@ -150,14 +151,16 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
-import CellKey from '@/views/Project/Table/CellKey';
-import CellValue from '@/views/Project/Table/CellValue';
+import KeyDialogCreate from '@/views/Project/Key/KeyDialogCreate';
+import KeyDialogEdit from '@/views/Project/Key/KeyDialogEdit';
+import ValueMenu from '@/views/Project/Value/ValueMenu';
 
 export default {
   components: {
     AppProgress,
-    CellKey,
-    CellValue,
+    KeyDialogCreate,
+    KeyDialogEdit,
+    ValueMenu,
   },
   data() {
     return {

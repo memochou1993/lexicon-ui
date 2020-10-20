@@ -1,50 +1,55 @@
 <template>
   <div>
-    <v-card>
-      <v-card-text
-        class="pa-3"
-      >
-        <v-card
-          outlined
+    <v-form
+      ref="form"
+      @submit.prevent="createValue()"
+    >
+      <v-card>
+        <v-card-text
+          class="pa-3"
         >
-          <v-textarea
-            v-model="text"
-            autofocus
-            auto-grow
-            color="primary"
-            flat
-            hide-details
-            rows="2"
-            solo
-          />
-        </v-card>
-      </v-card-text>
-      <v-card-actions
-        class="px-3 pt-0 pb-3"
-      >
-        <v-btn
-          color="primary lighten-1"
-          elevation="0"
-          small
-          @click="createValue()"
+          <v-card
+            outlined
+          >
+            <v-textarea
+              v-model="text"
+              autofocus
+              auto-grow
+              color="primary"
+              flat
+              hide-details
+              rows="2"
+              solo
+            />
+          </v-card>
+        </v-card-text>
+        <v-card-actions
+          class="px-3 pt-0 pb-3"
         >
-          <v-icon>
-            mdi-check
-          </v-icon>
-        </v-btn>
-        <v-btn
-          color="primary lighten-1"
-          outlined
-          small
-          text
-          @click="$emit('setMenu', false)"
-        >
-          <v-icon>
-            mdi-close
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+          <v-btn
+            color="primary lighten-1"
+            elevation="0"
+            small
+            type="submit"
+          >
+            <v-icon>
+              mdi-check
+            </v-icon>
+          </v-btn>
+          <v-btn
+            color="primary lighten-1"
+            outlined
+            small
+            text
+            @click="$emit('setMenu', false)"
+          >
+            <v-icon>
+              mdi-close
+            </v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
   </div>
 </template>
 <script>
@@ -89,6 +94,7 @@ export default {
       this.text = text;
     },
     reset() {
+      this.$refs.form.resetValidation();
       this.setText('');
     },
     createValue() {

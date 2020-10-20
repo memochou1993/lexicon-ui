@@ -16,6 +16,33 @@ export default {
     },
   },
   actions: {
+    storeKey({
+      commit,
+    }, {
+      projectId,
+      name,
+    }) {
+      commit('setKeyData');
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'POST',
+          url: `projects/${projectId}/keys`,
+          data: {
+            name,
+          },
+        })
+          .then(({ data }) => {
+            commit('setKeyData', data);
+            // TODO: setKeyList
+            resolve(data);
+          })
+          .catch((error) => {
+            commit('setKeyData', error);
+            commit('setError', error, { root: true });
+            reject(error);
+          });
+      });
+    },
     fetchKeys({
       commit,
     }, {

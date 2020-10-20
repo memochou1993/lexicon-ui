@@ -34,7 +34,7 @@
         <v-divider />
         <v-card-actions>
           <v-btn
-            :disabled="!dialog || consistent || keyData.status.loading"
+            :disabled="!dialog || keyData.status.loading"
             color="primary"
             outlined
             small
@@ -87,11 +87,6 @@ export default {
     ...mapState('key', [
       'keyData',
     ]),
-    consistent() {
-      return (
-        this.name === this.injectedKey.name
-      );
-    },
     inputs() {
       return {
         name: this.name,
@@ -125,6 +120,7 @@ export default {
       this.name = name;
     },
     reset() {
+      this.$refs.form.resetValidation();
       this.setName(this.injectedKey.name);
     },
     getKey() {

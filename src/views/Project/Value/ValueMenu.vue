@@ -32,14 +32,14 @@
           </span>
         </div>
       </template>
-      <CellValueCardEdit
+      <ValueFormEdit
         v-if="value && value.id"
         :menu="menu"
         :injected-value="value"
         @setMenu="setMenu"
         @setValue="setValue"
       />
-      <CellValueCardCreate
+      <ValueFormCreate
         v-else
         :menu="menu"
         :injected-key="injectedKey"
@@ -53,13 +53,13 @@
 </template>
 
 <script>
-import CellValueCardCreate from '@/views/Project/Table/CellValueCardCreate';
-import CellValueCardEdit from '@/views/Project/Table/CellValueCardEdit';
+import ValueFormCreate from '@/views/Project/Value/ValueFormCreate';
+import ValueFormEdit from '@/views/Project/Value/ValueFormEdit';
 
 export default {
   components: {
-    CellValueCardCreate,
-    CellValueCardEdit,
+    ValueFormCreate,
+    ValueFormEdit,
   },
   props: {
     injectedKey: {
