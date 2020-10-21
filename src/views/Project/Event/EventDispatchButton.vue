@@ -12,15 +12,22 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
   methods: {
+    ...mapMutations([
+      'setMessage',
+    ]),
     ...mapActions('server', [
       'dispatch',
     ]),
     dispatchEvents() {
-      this.dispatch();
+      this.setMessage('Events dispatched!');
+      this.dispatch()
+        .catch(() => {
+          this.setMessage('Events dispatched failed!');
+        });
     },
   },
 };
