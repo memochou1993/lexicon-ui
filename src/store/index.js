@@ -18,10 +18,14 @@ export default new Vuex.Store({
   },
   state: {
     error: null,
+    message: '',
   },
   mutations: {
     setError(state, error) {
       state.error = error;
+    },
+    setMessage(state, message) {
+      state.message = message;
     },
   },
 });

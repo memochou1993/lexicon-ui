@@ -1,34 +1,21 @@
 <template>
   <div>
-    <v-snackbar
-      v-if="!hidden.includes(status)"
-      :timeout="10000"
-      :value="error"
-      bottom
+    <AppSnackbar
+      v-if="message && !hidden.includes(status)"
+      :message="message"
       color="error"
-      text
-    >
-      {{ message }}
-      <template
-        v-slot:action="{ attrs }"
-      >
-        <v-icon
-          color="error"
-          icon
-          v-bind="attrs"
-          @click="setError(null)"
-        >
-          mdi-close
-        </v-icon>
-      </template>
-    </v-snackbar>
+    />
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import AppSnackbar from '@/components/AppSnackbar';
 
 export default {
+  components: {
+    AppSnackbar,
+  },
   data() {
     return {
       hidden: [
@@ -39,17 +26,26 @@ export default {
   computed: {
     ...mapState([
       'error',
+      'message',
     ]),
-    message() {
-      return this.error?.response?.data?.message || this.error?.message || '';
-    },
     status() {
       return this.error?.response?.status || 0;
+    },
+  },
+  watch: {
+    error() {
+      this.setMessage(this.error?.response?.data?.message || this.error?.message || '');
+    },
+    message(value) {
+      if (!value) {
+        this.setError(null);
+      }
     },
   },
   methods: {
     ...mapMutations([
       'setError',
+      'setMessage',
     ]),
   },
 };
