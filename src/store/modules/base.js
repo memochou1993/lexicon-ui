@@ -1,11 +1,8 @@
 export default class Base {
   /**
-   * @property meta.current_page
-   * @property meta.from
-   * @property meta.last_page
-   * @property meta.per_page
-   * @property meta.to
-   * @property meta.total
+   * @property setting
+   * @property api_key
+   * @property last_page
    */
   static state() {
     return {

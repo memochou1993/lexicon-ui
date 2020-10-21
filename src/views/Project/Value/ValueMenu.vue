@@ -20,13 +20,13 @@
         >
           <span
             v-if="value && value.text"
-            class="info--text"
+            class="info--text text--darken-1"
           >
             {{ value.text }}
           </span>
           <span
             v-else
-            class="red--text"
+            class="orange--text text--darken-1"
           >
             Empty
           </span>

@@ -15,8 +15,9 @@
           <v-card-actions
             class="px-0"
           >
-            <v-spacer />
             <KeyDialogCreate />
+            <v-spacer />
+            <EventDispatchButton />
           </v-card-actions>
         </v-card>
         <v-list
@@ -160,6 +161,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
+import EventDispatchButton from '@/views/Project/Event/EventDispatchButton';
 import KeyDialogCreate from '@/views/Project/Key/KeyDialogCreate';
 import KeyDialogEdit from '@/views/Project/Key/KeyDialogEdit';
 import ValueMenu from '@/views/Project/Value/ValueMenu';
@@ -167,6 +169,7 @@ import ValueMenu from '@/views/Project/Value/ValueMenu';
 export default {
   components: {
     AppProgress,
+    EventDispatchButton,
     KeyDialogCreate,
     KeyDialogEdit,
     ValueMenu,
@@ -216,6 +219,7 @@ export default {
       this.fetchProject({
         projectId: this.$route.params.projectId,
         relations: [
+          'setting',
           'languages',
           'languages.forms',
         ],

@@ -8,7 +8,7 @@
         v-slot:activator="{ on, attrs }"
       >
         <span
-          class="info--text text-h6 text-md-body-2"
+          class="info--text text--darken-1 text-h6 text-md-body-2"
           v-bind="attrs"
           v-on="on"
         >
