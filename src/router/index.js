@@ -6,15 +6,20 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+    name: 'home',
+    redirect: {
+      name: 'teams.index',
+    },
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/teams',
     name: 'teams.index',
     component: () => import(/* webpackChunkName: "teams.index" */ '@/views/Team/Index.vue'),
     meta: {
-      // requiresVisitor: true,
+      requiresAuth: true,
     },
   },
   {
@@ -22,7 +27,7 @@ const routes = [
     name: 'teams.show',
     component: () => import(/* webpackChunkName: "teams.show" */ '@/views/Team/Show.vue'),
     meta: {
-      // requiresVisitor: true,
+      requiresAuth: true,
     },
   },
   {
@@ -30,13 +35,52 @@ const routes = [
     name: 'projects.show',
     component: () => import(/* webpackChunkName: "projects.show" */ '@/views/Project/Show.vue'),
     meta: {
-      // requiresVisitor: true,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/login',
+    name: 'auth.login',
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/logout',
+    name: 'auth.logout',
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '*',
+    name: '',
+    redirect: {
+      name: 'home',
     },
   },
 ];
 
 const router = new VueRouter({
   routes,
+});
+
+const token = ''; // TODO
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((r) => r.meta.requiresAuth) && !token) {
+    return next({
+      name: 'auth.login',
+    });
+  }
+
+  if (to.matched.some((r) => !r.meta.requiresAuth) && token) {
+    return next({
+      name: 'home',
+    });
+  }
+
+  return next();
 });
 
 export default router;
