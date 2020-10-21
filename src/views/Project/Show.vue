@@ -13,7 +13,7 @@
           flat
         >
           <v-card-actions
-            class="px-0"
+            class="px-0 pt-0 pb-4"
           >
             <KeyDialogCreate />
             <v-spacer />

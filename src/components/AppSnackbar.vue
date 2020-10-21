@@ -3,9 +3,10 @@
     <v-snackbar
       v-model="snackbar"
       :color="color"
-      :timeout="5000"
+      :timeout="error ? 8000 : 4000"
       :value="true"
       bottom
+      outlined
       text
     >
       {{ message }}
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   props: {
@@ -43,6 +44,11 @@ export default {
     return {
       snackbar: true,
     };
+  },
+  computed: {
+    ...mapState([
+      'error',
+    ]),
   },
   watch: {
     snackbar(value) {
