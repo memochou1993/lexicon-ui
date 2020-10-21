@@ -41,6 +41,7 @@ const routes = [
   {
     path: '/login',
     name: 'auth.login',
+    component: () => import(/* webpackChunkName: "auth.login" */ '@/views/Auth/Login.vue'),
     meta: {
       requiresAuth: false,
     },
@@ -48,6 +49,7 @@ const routes = [
   {
     path: '/logout',
     name: 'auth.logout',
+    component: () => import(/* webpackChunkName: "auth.logout" */ '@/views/Auth/Logout.vue'),
     meta: {
       requiresAuth: true,
     },
@@ -65,7 +67,7 @@ const router = new VueRouter({
   routes,
 });
 
-const token = ''; // TODO
+const token = process.env.VUE_APP_API_DEMO_TOKEN || null;
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((r) => r.meta.requiresAuth) && !token) {
