@@ -2,8 +2,8 @@
   <div>
     <AppSnackbar
       v-if="message && !hidden.includes(status)"
+      :color="error ? 'error' : 'success'"
       :message="message"
-      color="error"
     />
   </div>
 </template>

@@ -11,6 +11,7 @@ export default {
   actions: {
     dispatch({
       rootState,
+      commit,
     }) {
       return new Promise((resolve, reject) => {
         axios({
@@ -24,6 +25,7 @@ export default {
             resolve(data);
           })
           .catch((error) => {
+            commit('setError', error, { root: true });
             reject(error);
           });
       });
