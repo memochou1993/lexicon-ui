@@ -2,7 +2,7 @@
   <div>
     <AppSnackbar
       v-if="message && !hidden.includes(status)"
-      :color="error ? 'error' : 'success'"
+      :color="error ? 'error' : 'success darken-4'"
       :message="message"
     />
   </div>

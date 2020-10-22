@@ -20,7 +20,9 @@
             <EventDispatchButton
               class="mr-2"
             />
-            <DemoButton />
+            <DemoButton
+              v-show="$vuetify.breakpoint.mdAndUp"
+            />
           </v-card-actions>
         </v-card>
         <v-list
