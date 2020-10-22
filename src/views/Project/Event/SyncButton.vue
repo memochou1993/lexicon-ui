@@ -6,7 +6,7 @@
       small
       @click="dispatchEvents()"
     >
-      Dispatch Events
+      Sync
     </v-btn>
   </div>
 </template>
@@ -23,10 +23,13 @@ export default {
       'dispatch',
     ]),
     dispatchEvents() {
-      this.setMessage('Events dispatched!');
+      this.setMessage('Contacting server...');
       this.dispatch()
+        .then(() => {
+          this.setMessage('Events Dispatched!');
+        })
         .catch(() => {
-          this.setMessage('Events dispatched failed!');
+          this.setMessage('Oops! Something went wrong!');
         });
     },
   },

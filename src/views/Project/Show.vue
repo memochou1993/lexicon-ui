@@ -17,7 +17,7 @@
           >
             <KeyDialogCreate />
             <v-spacer />
-            <EventDispatchButton
+            <SyncButton
               class="mr-2"
             />
             <DemoButton
@@ -167,18 +167,18 @@
 import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
 import DemoButton from '@/views/Project/Event/DemoButton';
-import EventDispatchButton from '@/views/Project/Event/EventDispatchButton';
 import KeyDialogCreate from '@/views/Project/Key/KeyDialogCreate';
 import KeyDialogEdit from '@/views/Project/Key/KeyDialogEdit';
+import SyncButton from '@/views/Project/Event/SyncButton';
 import ValueMenu from '@/views/Project/Value/ValueMenu';
 
 export default {
   components: {
     AppProgress,
     DemoButton,
-    EventDispatchButton,
     KeyDialogCreate,
     KeyDialogEdit,
+    SyncButton,
     ValueMenu,
   },
   data() {

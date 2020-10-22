@@ -6,7 +6,7 @@
       small
       @click="preview()"
     >
-      Demo Page
+      Demo
     </v-btn>
   </div>
 </template>
