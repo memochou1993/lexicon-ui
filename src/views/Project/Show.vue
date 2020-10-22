@@ -17,7 +17,10 @@
           >
             <KeyDialogCreate />
             <v-spacer />
-            <EventDispatchButton />
+            <EventDispatchButton
+              class="mr-2"
+            />
+            <DemoButton />
           </v-card-actions>
         </v-card>
         <v-list
@@ -161,6 +164,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
+import DemoButton from '@/views/Project/Event/DemoButton';
 import EventDispatchButton from '@/views/Project/Event/EventDispatchButton';
 import KeyDialogCreate from '@/views/Project/Key/KeyDialogCreate';
 import KeyDialogEdit from '@/views/Project/Key/KeyDialogEdit';
@@ -169,6 +173,7 @@ import ValueMenu from '@/views/Project/Value/ValueMenu';
 export default {
   components: {
     AppProgress,
+    DemoButton,
     EventDispatchButton,
     KeyDialogCreate,
     KeyDialogEdit,
@@ -219,9 +224,10 @@ export default {
       this.fetchProject({
         projectId: this.$route.params.projectId,
         relations: [
-          'setting',
+          'hooks',
           'languages',
           'languages.forms',
+          'setting',
         ],
       });
     },

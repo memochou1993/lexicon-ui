@@ -1,6 +1,7 @@
 export default class Base {
   /**
    * @property setting
+   * @property app_url
    * @property api_key
    * @property last_page
    */

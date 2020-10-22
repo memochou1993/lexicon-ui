@@ -8,7 +8,7 @@
         v-slot:activator="{ on, attrs }"
       >
         <v-btn
-          color="primary"
+          color="info darken-4"
           outlined
           small
           v-bind="attrs"
