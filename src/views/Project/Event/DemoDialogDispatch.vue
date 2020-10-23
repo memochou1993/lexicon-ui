@@ -24,7 +24,9 @@
             outlined
             class="mb-5"
           >
-            <v-card-title>
+            <v-card-title
+              class="pa-3"
+            >
               API Key
             </v-card-title>
             <v-divider />
@@ -42,8 +44,11 @@
           </v-card>
           <v-card
             outlined
+            class="mb-5"
           >
-            <v-card-title>
+            <v-card-title
+              class="pa-3"
+            >
               Webhooks
             </v-card-title>
             <v-divider />
@@ -69,12 +74,41 @@
               </template>
             </v-list>
           </v-card>
+          <v-card
+            outlined
+          >
+            <v-card-title
+              class="pa-3"
+            >
+              Events
+            </v-card-title>
+            <v-divider />
+            <v-list
+              class="py-0"
+            >
+              <v-list-item>
+                <v-list-item-content
+                  class="py-0"
+                >
+                  <v-checkbox
+                    v-model="events"
+                    :ripple="false"
+                    dense
+                    label="Sync"
+                    value="sync"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card>
         </v-card-text>
         <v-divider />
-        <v-card-actions>
+        <v-card-actions
+          class="pa-3"
+        >
           <v-spacer />
           <v-btn
-            :disabled="!dialog || loading"
+            :disabled="!dialog || !events.length || loading"
             color="primary"
             elevation="0"
             small
@@ -101,6 +135,9 @@ export default {
   data() {
     return {
       loading: false,
+      events: [
+        'sync',
+      ],
     };
   },
   computed: {
@@ -123,6 +160,7 @@ export default {
       this.setMessage('Contacting the server...');
       this.dispatch({
         apiKey: this.projectData.data.setting.settings.api_key,
+        events: this.events,
       })
         .then(() => {
           this.setMessage('Events dispatched!');

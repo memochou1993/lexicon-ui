@@ -32,6 +32,7 @@ export default new Vuex.Store({
       commit,
     }, {
       apiKey,
+      events,
     }) {
       return new Promise((resolve, reject) => {
         axios({
@@ -39,6 +40,9 @@ export default new Vuex.Store({
           url: '/project/dispatch',
           headers: {
             Authorization: `Bearer ${apiKey}`,
+          },
+          data: {
+            events,
           },
         })
           .then(({ data }) => {

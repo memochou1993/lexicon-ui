@@ -18,11 +18,12 @@
       </v-card-title>
       <v-divider />
       <v-card-text
-        class="pa-5 pb-0"
+        :class="['pa-5', JSON.stringify(errors) === '{}' ? '' : 'pb-0']"
       >
         <v-text-field
           v-model="name"
           :error-messages="errors.name"
+          :hide-details="!errors.name"
           :rules="[rules.required]"
           autocomplete="off"
           autofocus
@@ -31,7 +32,9 @@
         />
       </v-card-text>
       <v-divider />
-      <v-card-actions>
+      <v-card-actions
+        class="pa-3"
+      >
         <v-btn
           :disabled="!dialog || keyData.status.loading"
           color="primary"
