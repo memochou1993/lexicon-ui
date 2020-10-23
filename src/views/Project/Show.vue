@@ -17,12 +17,7 @@
           >
             <KeyDialogCreate />
             <v-spacer />
-            <SyncButton
-              class="mr-2"
-            />
-            <DemoButton
-              v-show="$vuetify.breakpoint.mdAndUp"
-            />
+            <DemoDialog />
           </v-card-actions>
         </v-card>
         <v-list
@@ -166,19 +161,17 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import AppProgress from '@/components/AppProgress';
-import DemoButton from '@/views/Project/Event/DemoButton';
+import DemoDialog from '@/views/Project/Event/DemoDialog';
 import KeyDialogCreate from '@/views/Project/Key/KeyDialogCreate';
 import KeyDialogEdit from '@/views/Project/Key/KeyDialogEdit';
-import SyncButton from '@/views/Project/Event/SyncButton';
 import ValueMenu from '@/views/Project/Value/ValueMenu';
 
 export default {
   components: {
     AppProgress,
-    DemoButton,
+    DemoDialog,
     KeyDialogCreate,
     KeyDialogEdit,
-    SyncButton,
     ValueMenu,
   },
   data() {
