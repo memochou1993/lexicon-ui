@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 import key from '@/store/modules/key';
 import project from '@/store/modules/project';
-import server from '@/store/modules/server';
 import team from '@/store/modules/team';
 import value from '@/store/modules/value';
 
@@ -12,7 +12,6 @@ export default new Vuex.Store({
   modules: {
     key,
     project,
-    server,
     team,
     value,
   },
@@ -26,6 +25,30 @@ export default new Vuex.Store({
     },
     setMessage(state, message) {
       state.message = message;
+    },
+  },
+  actions: {
+    dispatch({
+      commit,
+    }, {
+      apiKey,
+    }) {
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'POST',
+          url: '/project/dispatch',
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+          },
+        })
+          .then(({ data }) => {
+            resolve(data);
+          })
+          .catch((error) => {
+            commit('setError', error);
+            reject(error);
+          });
+      });
     },
   },
 });

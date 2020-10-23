@@ -74,7 +74,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            :disabled="!dialog"
+            :disabled="!dialog || loading"
             color="primary"
             elevation="0"
             small
@@ -98,6 +98,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      loading: false,
+    };
+  },
   computed: {
     ...mapState('project', [
       'projectData',
@@ -107,17 +112,26 @@ export default {
     ...mapMutations([
       'setMessage',
     ]),
-    ...mapActions('server', [
+    ...mapActions([
       'dispatch',
     ]),
+    setLoading(loading) {
+      this.loading = loading;
+    },
     dispatchEvents() {
-      this.setMessage('Contacting server...');
-      this.dispatch()
+      this.setLoading(true);
+      this.setMessage('Contacting the server...');
+      this.dispatch({
+        apiKey: this.projectData.data.setting.settings.api_key,
+      })
         .then(() => {
-          this.setMessage('Events Dispatched!');
+          this.setMessage('Events dispatched!');
         })
         .catch(() => {
           this.setMessage('Oops! Something went wrong!');
+        })
+        .finally(() => {
+          this.setLoading(false);
         });
     },
   },
