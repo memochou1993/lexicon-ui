@@ -49,7 +49,7 @@
             <v-card-title
               class="pa-3"
             >
-              Webhooks
+              Webhook
             </v-card-title>
             <v-divider />
             <v-list
@@ -66,6 +66,14 @@
                       v-text="hook.url"
                     />
                   </v-list-item-content>
+                  <v-list-item-action>
+                    <v-icon
+                      color="secondary"
+                      @click="open(hook.url)"
+                    >
+                      mdi-home
+                    </v-icon>
+                  </v-list-item-action>
                 </v-list-item>
                 <v-divider
                   v-if="hookIndex < projectData.data.hooks.length - 1"
@@ -154,6 +162,10 @@ export default {
     ]),
     setLoading(loading) {
       this.loading = loading;
+    },
+    open(url) {
+      const { origin } = new URL(url);
+      window.open(origin, '_blank', 'noopener noreferrer');
     },
     dispatchEvents() {
       this.setLoading(true);
