@@ -4,10 +4,14 @@ import Base from '@/store/modules/base';
 export default {
   namespaced: true,
   state: {
+    userProjectList: Base.state(),
     projectList: Base.state(),
     projectData: Base.state(),
   },
   mutations: {
+    setUserProjectList(state, payload) {
+      state.userProjectList = Base.update(state.userProjectList, payload);
+    },
     setProjectList(state, payload) {
       state.projectList = Base.update(state.projectList, payload);
     },
@@ -16,6 +20,37 @@ export default {
     },
   },
   actions: {
+    fetchUserProjects({
+      commit,
+    }, {
+      page,
+      sort = 'created_at',
+      direction = 'asc',
+      perPage = 100,
+    }) {
+      commit('setUserProjectList');
+      return new Promise((resolve, reject) => {
+        axios({
+          method: 'GET',
+          url: '/user/projects',
+          params: {
+            page,
+            sort,
+            direction,
+            per_page: perPage,
+          },
+        })
+          .then(({ data }) => {
+            commit('setUserProjectList', data);
+            resolve(data);
+          })
+          .catch((error) => {
+            commit('setUserProjectList', error);
+            commit('setError', error, { root: true });
+            reject(error);
+          });
+      });
+    },
     fetchProjects({
       commit,
     }, {

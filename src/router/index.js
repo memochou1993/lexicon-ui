@@ -31,6 +31,14 @@ const routes = [
     },
   },
   {
+    path: '/projects',
+    name: 'projects.index',
+    component: () => import(/* webpackChunkName: "projects.index" */ '@/views/Project/Index.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: '/projects/:projectId',
     name: 'projects.show',
     component: () => import(/* webpackChunkName: "projects.show" */ '@/views/Project/Show.vue'),

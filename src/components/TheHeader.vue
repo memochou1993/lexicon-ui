@@ -26,12 +26,12 @@
         </template>
         <v-list>
           <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
+            v-for="(link) in links"
+            :key="link.title"
+            @click="go(link.name)"
           >
             <v-list-item-title>
-              Option {{ n }}
+              {{ link.title }}
             </v-list-item-title>
           </v-list-item>
         </v-list>
@@ -39,3 +39,31 @@
     </v-app-bar>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      links: [
+        {
+          title: 'My Teams',
+          name: 'teams.index',
+        },
+        {
+          title: 'My Projects',
+          name: 'projects.index',
+        },
+      ],
+    };
+  },
+  methods: {
+    go(name) {
+      if (name !== this.$route.name) {
+        this.$router.push({
+          name,
+        });
+      }
+    },
+  },
+};
+</script>

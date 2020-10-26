@@ -1,33 +1,33 @@
 <template>
   <div>
     <v-card
-      v-if="userTeamList.data"
+      v-if="userProjectList.data"
     >
       <v-card-title
         class="pa-5"
       >
-        My Teams
+        My Projects
       </v-card-title>
       <v-card-text>
         <v-list>
           <v-list-item-group>
             <template
-              v-for="(team, teamIndex) in userTeamList.data"
+              v-for="(project, projectIndex) in userProjectList.data"
             >
               <v-list-item
-                :key="team.id"
-                :to="{ name: 'teams.show', params: { teamId: team.id } }"
+                :key="project.id"
+                :to="{ name: 'projects.show', params: { projectId: project.id } }"
                 three-line
               >
                 <v-list-item-content>
                   <v-list-item-title
-                    v-text="team.name"
+                    v-text="project.name"
                   />
                 </v-list-item-content>
               </v-list-item>
               <v-divider
-                v-if="teamIndex < userTeamList.data.length - 1"
-                :key="`divider-${team.id}`"
+                v-if="projectIndex < userProjectList.data.length - 1"
+                :key="`divider-${project.id}`"
               />
             </template>
           </v-list-item-group>
@@ -71,27 +71,27 @@ export default {
     };
   },
   computed: {
-    ...mapState('team', [
-      'userTeamList',
+    ...mapState('project', [
+      'userProjectList',
     ]),
     pages() {
-      return this.userTeamList.meta?.last_page || 0;
+      return this.userProjectList.meta?.last_page || 0;
     },
   },
   watch: {
     page() {
-      this.getUserTeams();
+      this.getUserProjects();
     },
   },
   created() {
-    this.getUserTeams();
+    this.getUserProjects();
   },
   methods: {
-    ...mapActions('team', [
-      'fetchUserTeams',
+    ...mapActions('project', [
+      'fetchUserProjects',
     ]),
-    getUserTeams() {
-      this.fetchUserTeams({
+    getUserProjects() {
+      this.fetchUserProjects({
         page: this.page,
       });
     },

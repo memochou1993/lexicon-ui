@@ -4,12 +4,12 @@ import Base from '@/store/modules/base';
 export default {
   namespaced: true,
   state: {
-    teamList: Base.state(),
+    userTeamList: Base.state(),
     teamData: Base.state(),
   },
   mutations: {
-    setTeamList(state, payload) {
-      state.teamList = Base.update(state.teamList, payload);
+    setUserTeamList(state, payload) {
+      state.userTeamList = Base.update(state.userTeamList, payload);
     },
     setTeamData(state, payload) {
       state.teamData = Base.update(state.teamData, payload);
@@ -24,7 +24,7 @@ export default {
       direction = 'asc',
       perPage = 100,
     }) {
-      commit('setTeamList');
+      commit('setUserTeamList');
       return new Promise((resolve, reject) => {
         axios({
           method: 'GET',
@@ -37,11 +37,11 @@ export default {
           },
         })
           .then(({ data }) => {
-            commit('setTeamList', data);
+            commit('setUserTeamList', data);
             resolve(data);
           })
           .catch((error) => {
-            commit('setTeamList', error);
+            commit('setUserTeamList', error);
             commit('setError', error, { root: true });
             reject(error);
           });
