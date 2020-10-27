@@ -78,7 +78,11 @@
                                       {{ language.name }}
                                     </td>
                                     <td
-                                      :class="(keyIndex + languageIndex) % 2 ? 'white' : 'grey lighten-5'"
+                                      :class="
+                                        (projectData.data.languages.length % 2 && keyIndex + languageIndex) % 2
+                                          ? 'white'
+                                          : 'grey lighten-5'
+                                      "
                                     >
                                       <v-row
                                         v-for="form in language.forms"
