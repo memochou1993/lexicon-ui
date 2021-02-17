@@ -1,4 +1,4 @@
-# lexicon-client
+# lexicon-ui
 
 ## Project setup
 ```
