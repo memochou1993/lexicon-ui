@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/teams',
     name: 'teams.index',
-    component: () => import(/* webpackChunkName: "teams.index" */ '@/views/Team/Index.vue'),
+    component: () => import(/* webpackChunkName: "teams.index" */ '@/views/Team/Index'),
     meta: {
       requiresAuth: true,
     },
@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/teams/:teamId',
     name: 'teams.show',
-    component: () => import(/* webpackChunkName: "teams.show" */ '@/views/Team/Show.vue'),
+    component: () => import(/* webpackChunkName: "teams.show" */ '@/views/Team/Show'),
     meta: {
       requiresAuth: true,
     },
@@ -33,7 +33,7 @@ const routes = [
   {
     path: '/projects',
     name: 'projects.index',
-    component: () => import(/* webpackChunkName: "projects.index" */ '@/views/Project/Index.vue'),
+    component: () => import(/* webpackChunkName: "projects.index" */ '@/views/Project/Index'),
     meta: {
       requiresAuth: true,
     },
@@ -41,7 +41,7 @@ const routes = [
   {
     path: '/projects/:projectId',
     name: 'projects.show',
-    component: () => import(/* webpackChunkName: "projects.show" */ '@/views/Project/Show.vue'),
+    component: () => import(/* webpackChunkName: "projects.show" */ '@/views/Project/Show'),
     meta: {
       requiresAuth: true,
     },
@@ -49,7 +49,7 @@ const routes = [
   {
     path: '/login',
     name: 'auth.login',
-    component: () => import(/* webpackChunkName: "auth.login" */ '@/views/Auth/Login.vue'),
+    component: () => import(/* webpackChunkName: "auth.login" */ '@/views/Auth/Login'),
     meta: {
       requiresAuth: false,
     },
@@ -57,7 +57,7 @@ const routes = [
   {
     path: '/logout',
     name: 'auth.logout',
-    component: () => import(/* webpackChunkName: "auth.logout" */ '@/views/Auth/Logout.vue'),
+    component: () => import(/* webpackChunkName: "auth.logout" */ '@/views/Auth/Logout'),
     meta: {
       requiresAuth: true,
     },
