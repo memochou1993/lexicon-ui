@@ -80,7 +80,7 @@
                                     <td
                                       :class="
                                         ((projectData.data.languages.length % 2 && keyIndex) + languageIndex) % 2
-                                          ? 'white'
+                                          ? 'white py-4'
                                           : 'grey lighten-5 py-4'
                                       "
                                     >
